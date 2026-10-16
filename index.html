@@ -61,6 +61,13 @@ textarea{min-height:64px;resize:vertical}.compact-notes{min-height:56px}.help{fo
 .form-badge-project{background:var(--blue-bg);color:var(--blue)}
 .form-badge-funder{background:var(--purple-bg);color:var(--purple)}
 .info-btn{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;border:1.5px solid var(--line-dark);font-size:11px;font-weight:700;color:var(--muted);margin-left:6px;vertical-align:middle;cursor:pointer;line-height:1;background:#fff}.info-btn:hover{border-color:var(--ink);color:var(--ink)}.metric-def{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:6px;line-height:1.4}
+.attr-slider{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+.attr-slider-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.attr-readout{font-family:"DM Serif Display",serif;font-size:28px;line-height:1}
+.attr-readout.unset{font-size:16px;color:var(--muted);font-family:"DM Sans",sans-serif;font-weight:600}
+.attr-bucket-name{font-size:12px;font-weight:700;color:var(--blue);text-align:right}
+.attr-slider input[type=range]{width:100%;accent-color:var(--blue);margin:6px 0 2px}
+.attr-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--faint)}
 .selection-summary{margin-top:14px;font-size:13px;color:var(--muted)}
 .other-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.other-box{border:1px solid var(--line);border-radius:12px;padding:14px}.other-box h4{font-size:13px;margin-bottom:6px}.inline-other{margin:10px 0 18px;background:var(--soft)}.other-ref{font-size:12px;color:var(--muted);background:var(--soft);padding:8px 10px;border-radius:8px;margin-bottom:9px;min-height:38px}
 .metric-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:14px}.metric-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.metric-name{font-family:"DM Serif Display",serif;font-size:24px;line-height:1.15}.area-pill{white-space:nowrap;font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px}
@@ -876,13 +883,13 @@ function endlineFieldsHtml(metric,existing){
     ? `<div class="notice">This metric is already a monetary value, so no conversion is required.</div>`
     : metric.askMonetisation ? `<div class="section"><div class="section-title">Can this change be converted into monetary value?</div><div class="inline-choices" id="monetise-${escapeAttr(metric.id)}" data-value="${escapeAttr(existingMonetisable)}">${['Yes','No','Not sure'].map(v=>`<button type="button" class="choice-btn ${existingMonetisable===v?'active':''}" onclick="setMonetisable('${escapeJs(metric.id)}','${v}')">${v}</button>`).join('')}</div><div class="conditional ${existingMonetisable==='Yes'?'show':''}" id="money-details-${escapeAttr(metric.id)}"><div class="compact-grid two" style="margin-top:10px"><div class="field"><label>₹ value per unit</label><div class="currency-wrap"><span>₹</span><input id="value-per-unit-${escapeAttr(metric.id)}" type="number" step="any" value="${escapeAttr(existing.value_per_unit??'')}"></div></div><div class="field"><label>How was this ₹ value estimated?</label><input id="value-basis-${escapeAttr(metric.id)}" value="${escapeAttr(existing.value_basis||'')}" placeholder="e.g. 2 staff hours × ₹250 per hour"></div></div></div></div>` : '';
 
-  const selectedBucket=existing.attribution_bucket||'';
+  const selectedPct=existing.attribution_percent??legacyPercentFromBucket(existing.attribution_bucket);
   // Notes merges the old What changed, Comments, Attribution reason and Quote boxes (tasklist 6.0).
   // Older saved values are shown here so nothing already entered is lost.
   const notesText=[existing.what_changed,existing.comments_notes||existing.evidence,existing.attribution_reason,existing.quote_or_example].filter(Boolean).join('\n\n');
   return `<div class="section"><div class="section-title">What changed, and why?</div><textarea class="compact-notes" id="endline-comments-${escapeAttr(metric.id)}" placeholder="Describe what changed and why you think Goalkeep contributed. Add any quote, story or example that supports it. Optional.">${escapeHtml(notesText)}</textarea></div>
     ${monetary}
-    <div class="section"><div class="section-title">How much of this change is linked to Goalkeep? <span class="required">*</span></div><div class="attr-grid" id="attr-${escapeAttr(metric.id)}" data-value="${escapeAttr(selectedBucket)}">${Object.keys(attributionBuckets).map(bucket=>{const parts=bucket.split(' — ');return `<button type="button" class="attr-btn ${selectedBucket===bucket?'selected':''}" data-bucket="${escapeAttr(bucket)}" onclick="setAttribution('${escapeJs(metric.id)}',this)"><div class="attr-range">${escapeHtml(parts[1]||bucket)}</div><div class="attr-name">${escapeHtml(parts[0])}</div></button>`}).join('')}</div></div>
+    <div class="section"><div class="section-title">How much of this change is linked to Goalkeep? <span class="required">*</span></div>${attributionControlHtml(metric.id,selectedPct)}</div>
     <div class="section"><div class="section-title">Can this example be used externally? <span class="required">*</span></div><select id="external-use-${escapeAttr(metric.id)}"><option value="">Select</option>${['Yes, with organisation name','Yes, anonymously','Internal use only','No'].map(v=>`<option value="${escapeAttr(v)}" ${existing.external_use_permission===v?'selected':''}>${escapeHtml(v)}</option>`).join('')}</select></div>`;
 }
 
@@ -912,10 +919,42 @@ function setMonetisable(metricId,value){
   }
 }
 
-function setAttribution(metricId,button){
-  document.querySelectorAll(`#attr-${cssEscape(metricId)} .attr-btn`).forEach(btn=>btn.classList.remove('selected'));
-  button.classList.add('selected');
-  document.getElementById(`attr-${metricId}`).dataset.value=button.dataset.bucket;
+// Attribution is an exact 0-100% value set with a slider (tasklist 10.0).
+// The four bands below match the Goalkeep buckets and are shown as guidance only.
+function attributionBandLabel(pct){
+  if(pct<25) return 'Low contribution — 0% to 24%';
+  if(pct<50) return 'Medium contribution — 25% to 49%';
+  if(pct<75) return 'High contribution — 50% to 74%';
+  return 'Very high contribution — 75% to 100%';
+}
+function legacyPercentFromBucket(bucket){
+  // Old bucket answers (saved drafts, earlier baseline values) are converted to the band midpoint.
+  const map={'Low':12,'Medium':37,'High':62,'Very high':88};
+  const key=Object.keys(map).find(k=>String(bucket||'').startsWith(k));
+  return key ? map[key] : '';
+}
+function attributionControlHtml(metricId,pct){
+  const has=pct!==''&&pct!==null&&pct!==undefined&&!Number.isNaN(Number(pct));
+  const v=has?Number(pct):0;
+  const id=escapeAttr(metricId);
+  return `<div class="attr-slider" id="attr-${id}" data-value="${has?v:''}">
+    <div class="attr-slider-top"><span class="attr-readout ${has?'':'unset'}" id="attr-readout-${id}">${has?v+'%':'Move the slider'}</span><span class="attr-bucket-name" id="attr-band-${id}">${has?escapeHtml(attributionBandLabel(v)):''}</span></div>
+    <input type="range" min="0" max="100" step="1" value="${v}" id="attr-range-${id}" aria-label="Share of change linked to Goalkeep" oninput="setAttributionPct('${escapeJs(metricId)}',this.value)">
+    <div class="attr-scale"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+    <div class="help">Drag to the share of this change that is linked to Goalkeep. Bands: 0–24% low, 25–49% medium, 50–74% high, 75–100% very high.</div>
+  </div>`;
+}
+function setAttributionPct(metricId,value){
+  const v=Math.round(Number(value));
+  const box=document.getElementById(`attr-${metricId}`);
+  if(!box) return;
+  box.dataset.value=v;
+  const readout=document.getElementById(`attr-readout-${metricId}`);
+  readout.textContent=`${v}%`;
+  readout.classList.remove('unset');
+  document.getElementById(`attr-band-${metricId}`).textContent=attributionBandLabel(v);
+  const range=document.getElementById(`attr-range-${metricId}`);
+  if(range && String(range.value)!==String(v)) range.value=v;
 }
 
 function collectMetricAnswers(){
@@ -960,7 +999,9 @@ function collectMetricAnswers(){
     answer.monetisable=metric.type==='currency'?'Direct financial value':(document.getElementById(`monetise-${id}`)?.dataset.value||'');
     answer.value_per_unit=document.getElementById(`value-per-unit-${id}`)?.value.trim()||'';
     answer.value_basis=document.getElementById(`value-basis-${id}`)?.value.trim()||'';
-    answer.attribution_bucket=document.getElementById(`attr-${id}`)?.dataset.value||'';
+    const pctRaw=document.getElementById(`attr-${id}`)?.dataset.value;
+    answer.attribution_percent=(pctRaw===undefined||pctRaw==='')?'':Number(pctRaw);
+    answer.attribution_bucket=answer.attribution_percent===''?'':attributionBandLabel(answer.attribution_percent);
     answer.attribution_reason='';
     answer.external_use_permission=document.getElementById(`external-use-${id}`)?.value||'';
     answer.quote_or_example='';
@@ -986,7 +1027,7 @@ function validateMetricAnswers(answers){
       if(answer.baseline_capture_type!=='Baseline unavailable' && answer.retrospective_baseline_value==='') return `Please enter the starting value for ${metric.label}.`;
       if(!answer.reason_added_at_endline) return `Please explain why ${metric.label} is being added at Endline.`;
     }
-    if(!answer.attribution_bucket) return `Please select a Goalkeep attribution bucket for ${metric.label}.`;
+    if(answer.attribution_percent===''||answer.attribution_percent===undefined) return `Please set the share linked to Goalkeep (0–100%) for ${metric.label}.`;
     if(!answer.external_use_permission) return `Please select the external-use permission for ${metric.label}.`;
     if(metric.askMonetisation && answer.monetisable==='Yes' && !answer.value_per_unit) return `Please enter the ₹ value per unit for ${metric.label}.`;
   }
@@ -1290,7 +1331,7 @@ async function saveDraftNow(){
 function buildDraftPayload(){
   const active=document.querySelector('.screen.active')?.id||'screen1';
   return {
-    version:'v2.6.1-form-chooser-preview',
+    version:'v2.7-attribution-slider',
     form_type:formType,
     screen:Number(active.replace('screen',''))||1,
     survey_type:surveyType,
@@ -1387,19 +1428,10 @@ function applyRestoredMetricAnswers(){
     if(answer.monetisable) setMonetisable(id,answer.monetisable);
     setIfExists(`value-per-unit-${id}`,answer.value_per_unit||'');
     setIfExists(`value-basis-${id}`,answer.value_basis||'');
-    if(answer.attribution_bucket){
-      const buttons = Array.from(
-        document.querySelectorAll(`#attr-${cssEscape(id)} .attr-btn`)
-      );
-
-      const btn = buttons.find(
-        item => item.dataset.bucket === answer.attribution_bucket
-      );
-
-      if(btn){
-        setAttribution(id, btn);
-      }
-    }
+    const restoredPct=answer.attribution_percent!==undefined&&answer.attribution_percent!==''
+      ? answer.attribution_percent
+      : legacyPercentFromBucket(answer.attribution_bucket);
+    if(restoredPct!==''&&restoredPct!==undefined) setAttributionPct(id, restoredPct);
     setIfExists(`external-use-${id}`,answer.external_use_permission||'');
   });
 }
