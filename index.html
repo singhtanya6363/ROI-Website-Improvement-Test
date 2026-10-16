@@ -286,7 +286,6 @@ const METRIC_DEFINITIONS = {
 let ratingQuestions = [];
 let metrics = [];
 let roiAreas = [];
-let attributionBuckets = {};
 let surveyType = 'baseline';
 let formType = '';
 let selectedMetricIds = new Set();
@@ -358,7 +357,6 @@ async function setFormType(type, options = {}){
     ratingQuestions = config.rating_questions || [];
     metrics = config.metrics || [];
     roiAreas = config.roi_areas || Object.keys(AREA_META);
-    attributionBuckets = config.attribution_buckets || {};
     configReady = true;
     renderRatings();
     renderMetricSelection();
@@ -787,14 +785,6 @@ function baselineValueFieldsHtml(metric){
     </div></div>`;
 }
 
-function baselineReferenceHtml(metric,baseline){
-  if(!baseline) return '<div class="baseline-ref"><strong>Original Baseline</strong>No saved value found.</div>';
-  if(baseline.metric_response_status==='Not applicable'){
-    return `<div class="baseline-ref"><strong>Original Baseline</strong>Not applicable${baseline.baseline_comments_notes?`<br>${escapeHtml(baseline.baseline_comments_notes)}`:''}</div>`;
-  }
-  return `<div class="baseline-ref"><strong>Original Baseline</strong><b>${escapeHtml(String(baseline.baseline_value??'—'))} ${escapeHtml(String(baseline.baseline_unit||''))}</b>${baseline.baseline_assumption_type?` · ${escapeHtml(baseline.baseline_assumption_type)}`:''}${baseline.baseline_comments_notes?`<br>${escapeHtml(baseline.baseline_comments_notes)}`:''}</div>`;
-}
-
 function retrospectiveBaselineHtml(metric,existing){
   const capture=existing.baseline_capture_type||'';
   const retroValue=existing.baseline_value??'';
@@ -929,6 +919,7 @@ function attributionBandLabel(pct){
 }
 function legacyPercentFromBucket(bucket){
   // Old bucket answers (saved drafts, earlier baseline values) are converted to the band midpoint.
+  // Whole-number midpoints (slider steps are whole numbers). Very high 87.5 is shown as 88.
   const map={'Low':12,'Medium':37,'High':62,'Very high':88};
   const key=Object.keys(map).find(k=>String(bucket||'').startsWith(k));
   return key ? map[key] : '';
@@ -1109,13 +1100,14 @@ function unlockDetails(){document.getElementById('organisation').readOnly=false;
 
 
 function showValidationMessage(message){
-  const container=document.getElementById('setup-alert') || document.getElementById('submit-error');
-  if(container){
-    container.innerHTML=`<div class="notice error">${escapeHtml(message)}</div>`;
-    window.scrollTo({top:0,behavior:'smooth'});
-  }else{
-    alert(message);
-  }
+  const main=document.querySelector('.screen.active main');
+  if(!main){alert(message);return;}
+  main.querySelectorAll('.page-message').forEach(el=>el.remove());
+  const div=document.createElement('div');
+  div.className='notice error page-message';
+  div.textContent=message;
+  main.prepend(div);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function clearValidationHighlights(){
@@ -1150,7 +1142,7 @@ function validateCurrentPage(page){
   }
 
   if(page===2 && !selectedMetricIds.size){
-    showValidationMessage('Please complete all mandatory questions before continuing.');
+    showValidationMessage('Select at least one metric to continue.');
     return false;
   }
 
@@ -1208,6 +1200,7 @@ function restoreCurrentPageState(page){
 }
 
 function showScreen(number){
+  document.querySelectorAll('.page-message').forEach(el=>el.remove());
   const currentScreen=Number(document.querySelector('.screen.active')?.id?.replace('screen',''));
   if(currentScreen && currentScreen!==number && currentScreen<=3){
     saveCurrentPageState(currentScreen);
@@ -1331,7 +1324,7 @@ async function saveDraftNow(){
 function buildDraftPayload(){
   const active=document.querySelector('.screen.active')?.id||'screen1';
   return {
-    version:'v2.7-attribution-slider',
+    version:'v2.8-fixes',
     form_type:formType,
     screen:Number(active.replace('screen',''))||1,
     survey_type:surveyType,
