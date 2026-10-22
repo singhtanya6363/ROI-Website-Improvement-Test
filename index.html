@@ -59,6 +59,26 @@ textarea{min-height:64px;resize:vertical}.compact-notes{min-height:56px}.help{fo
 .submit-error{display:none}.submit-error.show{display:block}.done{text-align:center;padding:60px 24px}.done-icon{width:68px;height:68px;background:var(--green-bg);border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;font-size:30px;color:var(--green)}.done h2{font-family:"DM Serif Display",serif;font-size:34px;margin-bottom:8px}.done p{color:var(--muted);font-size:14px}.engagement-box{max-width:650px;margin:18px auto;background:#151512;color:#fff;border-radius:14px;padding:17px}.engagement-box small{display:block;color:rgba(255,255,255,.7);margin-bottom:5px}.engagement-id{font-family:monospace;font-size:17px;word-break:break-all}
 footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-top:1px solid var(--line)}footer a{color:var(--muted);text-decoration:none}
 .area-financial{background:var(--blue-bg);color:var(--blue)}.area-efficiency{background:var(--green-bg);color:var(--green)}.area-decision{background:var(--amber-bg);color:var(--amber)}.area-capacity{background:var(--purple-bg);color:var(--purple)}
+/* ---- v3 additions: info icons, collapsible other metrics, baseline edit ---- */
+.info-wrap{position:relative;display:inline-block;vertical-align:middle;margin-left:7px;font-family:"DM Sans",sans-serif;font-weight:400;font-style:normal;text-transform:none;letter-spacing:0;line-height:1;white-space:normal}
+.info-btn{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;border:1.5px solid var(--line-dark);color:var(--muted);background:#fff;font-size:11px;font-weight:700;font-style:italic;font-family:Georgia,serif;cursor:help;user-select:none;-webkit-user-select:none}
+.info-btn:hover,.info-wrap.open .info-btn{border-color:var(--ink);color:var(--ink)}
+.info-btn:focus{outline:none}.info-btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.info-tip{position:absolute;top:calc(100% + 8px);left:0;z-index:60;width:max-content;max-width:min(290px,calc(100vw - 32px));background:#181816;color:#fff;border-radius:10px;padding:10px 12px;font-size:12.5px;line-height:1.45;font-weight:500;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.2);display:none;pointer-events:none}
+.info-wrap:hover .info-tip,.info-wrap.open .info-tip,.info-btn:focus-visible+.info-tip{display:block}
+.info-ex{display:block;margin-top:5px;font-size:11px;font-weight:400;color:rgba(255,255,255,.72)}
+.info-list{margin:6px 0 0;padding-left:16px}.info-list li{margin:2px 0;font-size:12px;font-weight:500}
+.metric-option:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.other-details{border-top:none;margin-top:0;padding-top:0}
+.other-details summary{display:flex;align-items:center;gap:9px;list-style:none;font-size:13px;font-weight:700;color:var(--muted);user-select:none}
+.other-details summary::-webkit-details-marker{display:none}
+.other-details summary::before{content:"+";display:grid;place-items:center;width:18px;height:18px;border-radius:5px;border:1.5px solid var(--line-dark);background:#fff;font-size:13px;line-height:1;color:var(--muted);flex-shrink:0}
+.other-details[open] summary::before{content:"\2013"}
+.other-details .other-body{margin-top:10px}
+.other-count{font-weight:600;color:var(--green);font-size:11px}
+.other-box.inline-other{padding:11px 14px}
+.link-btn{background:none;border:none;padding:0;margin-left:8px;color:var(--blue);font-size:11px;font-weight:700;letter-spacing:.03em;text-decoration:underline;cursor:pointer}
+.edit-note{margin-top:6px}
 @media(max-width:760px){header{padding:0 18px}.logo{height:30px;width:auto}.progress{justify-content:flex-start;overflow-x:auto}.p-label{display:none}.p-line{width:32px}.grid-2,.metric-grid,.other-grid,.compact-grid,.compact-grid.two,.compare-grid,.metric-guidance{grid-template-columns:1fr}.type-row{grid-template-columns:1fr}.attr-grid{grid-template-columns:repeat(2,1fr)}main{padding:15px 15px 55px}.hero{padding-top:28px}.metric-head{display:block}.area-pill{display:inline-block;margin-top:8px}.metric-card{padding:17px}.rating-card{padding:17px}}
 </style>
 </head>
@@ -127,12 +147,35 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
           <div class="help">For example: Leadership Dashboard, MEL System Strengthening, Data Literacy Program, or Dashboard Maintenance Support.</div>
         </div>
         <div class="field">
+          <label for="project-type">Project type <span class="required">*</span></label>
+          <select id="project-type">
+            <option value="">Select</option>
+            <option value="Kickstarter">Kickstarter</option>
+            <option value="Capacity Building Engagement">Capacity Building Engagement</option>
+            <option value="Impact Reporting">Impact Reporting</option>
+            <option value="Special Projects">Special Projects</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
           <label for="respondent-name">Your name <span class="required">*</span></label>
           <input id="respondent-name" autocomplete="name">
         </div>
         <div class="field">
+          <label for="designation">Designation / Role <span class="required">*</span></label>
+          <input id="designation" autocomplete="organization-title">
+        </div>
+        <div class="field">
           <label for="email">Email address</label>
           <input id="email" type="email" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="participant-name-2">Participant name 2 (optional)</label>
+          <input id="participant-name-2">
+        </div>
+        <div class="field">
+          <label for="participant-role">Participant role (optional)</label>
+          <input id="participant-role">
         </div>
       </div>
     </div>
@@ -151,7 +194,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
   <div class="hero">
     <div class="eyebrow">Step 2 of 3</div>
     <h1 id="metrics-title">Choose what to <em>measure</em></h1>
-    <p id="metrics-subtitle">Select only the metrics that are relevant to this engagement.</p>
+    <p id="metrics-subtitle">Select the metrics relevant to this project.</p>
   </div>
   <main>
     <div class="card" id="metric-selection-card">
@@ -203,8 +246,9 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
 <footer><a href="https://goalkeep.net" target="_blank" rel="noopener">goalkeep.net</a> · ROI Mapper V2 · 2026</footer>
 
 <script>
-// Replace this with the V2 Apps Script Web App /exec URL.
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzLYs5uTGUPSUSfBmAbaYiV4OJ7L-HJwFszQAj6ZMONAqDFXgHM6QZS_vbOGmZo7Llm/exec';
+// TEST BUILD (v3): paste the /exec URL of the NEW test Apps Script deployment here.
+// Until then the form opens in preview mode (no saving) so every page can be reviewed.
+const SHEET_URL = 'https://script.google.com/a/macros/goalkeep.net/s/AKfycbzTkZGV7zHVbs6_FKBsLoXqoWsVzDdl_zQYE9PcXQW04kTgYPEHRqiZXoO8VSyMq6QPQA/exec';
 
 const AREA_META = {
   'Financial ROI': {key:'financial', icon:'₹'},
@@ -212,6 +256,65 @@ const AREA_META = {
   'Decision-making ROI': {key:'decision', icon:'◆'},
   'Capacity Building & Data Culture ROI': {key:'capacity', icon:'●'}
 };
+
+/* ---------------------------------------------------------------------------
+   v3 form content. Rating questions and metric labels / info text live here so
+   the form always shows the approved wording (the backend carries the same text).
+--------------------------------------------------------------------------- */
+const RATING_CONTENT = [
+  {id:'R01', area:'Financial ROI', text:'How well does your organisation’s data support funding discussions?', info:'Evidence used in a proposal or donor discussion.'},
+  {id:'R02', area:'Efficiency ROI', text:'How easily can your team access the data it needs without help from others?', info:'Finding a dashboard or report without asking another team.'},
+  {id:'R03', area:'Efficiency ROI', text:'How efficient is your team’s reporting process?', info:'Consider time spent compiling, checking and preparing data.'},
+  {id:'R05', area:'Decision-making ROI', text:'How consistently does your team use data to make programme decisions?', info:'Using target gaps to change programme priorities.'},
+  {id:'R08', area:'Capacity Building & Data Culture ROI', text:'How confidently can your team use its data tools without external support?', info:'Reading a dashboard without external help.'}
+];
+
+const METRIC_CONTENT = {
+  M01:{label:'Funds raised', info:'Funding received in the selected period, not pending proposals.', example:'₹5 lakh received this financial year.'},
+  M02:{label:'Programme budget', info:'Approved programme budget for the named financial year.', example:'Approved budget: ₹20 lakh for FY 2026–27.'},
+  M03:{label:'Data requests received', info:'Requests to the data/MEL team for information others cannot access themselves.', example:'20 requests per month.'},
+  M04:{label:'Reporting time', info:'Total staff hours spent preparing the same report or set of reports.', example:'20 staff-hours per monthly report.'},
+  M05:{label:'Trackers in use', info:'Distinct trackers actively used for the selected programme or process.', example:'8 active trackers.'},
+  M06:{label:'People with direct data access', info:'People who can find the data they need (related to their work) without asking another team.', example:'12 staff can access the dashboard directly.'},
+  M07:{label:'Team using data for decisions (%)', info:'Programme staff who used data for a decision in the selected period, as a share of programme staff.', example:'8 of 20 staff = 40%.'},
+  M09:{label:'Programme target achieved (%)', info:'Progress against one named outcome target applicable for a defined period.', example:'45 of a target of 100 = 45%.'},
+  M11:{label:'Staff trained in data use', info:'Unique staff who completed the defined data training.', example:'25 staff completed dashboard training.'},
+  M12:{label:'Training materials still used', info:'Whether staff still use the training materials, and how.', example:'Yes — worksheets used in monthly reviews.'},
+  M13:{label:'Methods reused internally', info:'Additional teams or programmes that reused or adapted the method.', example:'3 additional programmes reused the template.'},
+  M14:{label:'Active dashboard users', info:'Unique people who used the dashboard during the selected week or month.', example:'15 active users this month.'}
+};
+
+const COMMENTS_INFO_ITEMS = ['What changed?','What else contributed?','Why this attribution level?','Add any quote, story, report, or decision example'];
+
+/* Used only in preview mode (no backend URL yet). Mirrors the backend catalogue. */
+const LOCAL_CONFIG = {
+  roi_areas:['Financial ROI','Efficiency ROI','Decision-making ROI','Capacity Building & Data Culture ROI'],
+  attribution_buckets:{'Low contribution — 0% to 24%':0.12,'Medium contribution — 25% to 49%':0.37,'High contribution — 50% to 74%':0.62,'Very high contribution — 75% to 100%':0.875},
+  rating_questions:[],
+  metrics:[
+    {id:'M01',area:'Financial ROI',type:'currency',units:['₹'],direction:'higher_better',askMonetisation:false,baselineEnabled:true,endlineEnabled:true},
+    {id:'M02',area:'Financial ROI',type:'currency',units:['₹'],direction:'higher_better',askMonetisation:false,baselineEnabled:true,endlineEnabled:true},
+    {id:'M03',area:'Efficiency ROI',type:'number',units:['Requests/month','Requests/quarter'],direction:'lower_better',askMonetisation:true,baselineEnabled:true,endlineEnabled:true},
+    {id:'M04',area:'Efficiency ROI',type:'number',units:['Hours/report','Hours/month','Hours/quarter'],direction:'lower_better',askMonetisation:true,baselineEnabled:true,endlineEnabled:true},
+    {id:'M05',area:'Efficiency ROI',type:'number',units:['Trackers'],direction:'lower_better',askMonetisation:true,baselineEnabled:true,endlineEnabled:true},
+    {id:'M06',area:'Efficiency ROI',type:'number',units:['Users','Roles'],direction:'higher_better',askMonetisation:true,baselineEnabled:true,endlineEnabled:true},
+    {id:'M07',area:'Decision-making ROI',type:'number',units:['%'],direction:'higher_better',askMonetisation:false,baselineEnabled:true,endlineEnabled:true},
+    {id:'M09',area:'Decision-making ROI',type:'number',units:['%'],direction:'higher_better',askMonetisation:false,baselineEnabled:true,endlineEnabled:true},
+    {id:'M11',area:'Capacity Building & Data Culture ROI',type:'number',units:['Staff'],direction:'higher_better',askMonetisation:true,baselineEnabled:true,endlineEnabled:true},
+    {id:'M12',area:'Capacity Building & Data Culture ROI',type:'qualitative',units:[],direction:'qualitative',askMonetisation:false,baselineEnabled:false,endlineEnabled:true,endlineOnly:true},
+    {id:'M13',area:'Capacity Building & Data Culture ROI',type:'number',units:['Replications','Adaptations'],direction:'higher_better',askMonetisation:true,baselineEnabled:false,endlineEnabled:true,endlineOnly:true},
+    {id:'M14',area:'Capacity Building & Data Culture ROI',type:'number',units:['Active users/week','Active users/month'],direction:'higher_better',askMonetisation:false,baselineEnabled:true,endlineEnabled:true,allowNA:true}
+  ]
+};
+
+function applyFormContent(config){
+  ratingQuestions = RATING_CONTENT.map(r=>({id:r.id,area:r.area,baseline:r.text,endline:r.text,info:r.info}));
+  metrics = (config.metrics||[]).filter(m=>METRIC_CONTENT[m.id]).map(m=>Object.assign({},m,{
+    label:METRIC_CONTENT[m.id].label,
+    info:METRIC_CONTENT[m.id].info,
+    infoExample:METRIC_CONTENT[m.id].example
+  }));
+}
 
 let ratingQuestions = [];
 let metrics = [];
@@ -234,21 +337,29 @@ let isRestoringDraft = false;
 let isSubmittingFinal = false;
 let restoredMetricAnswersById = {};
 let pageState = {screen1:{}, screen2:{}, screen3:{}};
+let otherOpenAreas = new Set();
+let previewMode = false;
 
 window.addEventListener('DOMContentLoaded', init);
 
 async function init(){
   document.getElementById('response-date').value = todayISO();
   if(!isBackendConfigured()){
-    document.getElementById('setup-alert').innerHTML = '<div class="notice error">Setup needed: paste the V2 Apps Script Web App URL into SHEET_URL in index.html.</div>';
-    document.getElementById('ratings-wrapper').innerHTML = '<div class="card"><div class="subtle">The form will load after the backend URL is added.</div></div>';
+    previewMode = true;
+    document.getElementById('setup-alert').innerHTML = '<div class="notice info">Preview mode: the backend URL is not set yet, so nothing can be saved. Paste the new Apps Script /exec URL into SHEET_URL in index.html to test with the new Google Sheet.</div>';
+    applyFormContent(LOCAL_CONFIG);
+    roiAreas = LOCAL_CONFIG.roi_areas;
+    attributionBuckets = LOCAL_CONFIG.attribution_buckets;
+    configReady = true;
+    renderRatings();
+    renderMetricSelection();
+    renderOtherMetrics();
     return;
   }
   try{
     const config = await jsonp(SHEET_URL,{action:'getConfig'});
     if(config.status !== 'success') throw new Error(config.message || 'Could not load form configuration.');
-    ratingQuestions = config.rating_questions || [];
-    metrics = config.metrics || [];
+    applyFormContent(config);
     roiAreas = config.roi_areas || Object.keys(AREA_META);
     attributionBuckets = config.attribution_buckets || {};
     configReady = true;
@@ -300,7 +411,7 @@ function renderRatings(){
     const disabled = surveyType==='endline' && !loadedBaseline ? 'disabled' : '';
 
     html += `<div class="rating-card" data-rating-id="${escapeAttr(q.id)}">
-      <div class="rating-question">${escapeHtml(surveyType==='endline' ? q.endline : q.baseline)}</div>
+      <div class="rating-question">${escapeHtml(surveyType==='endline' ? q.endline : q.baseline)}${infoIconHtml({text:q.info})}</div>
       <div class="rating-buttons">
         ${[1,2,3,4,5].map(v=>`<button type="button" class="rating-btn ${selectedValue===v?'selected':''}" data-rating="${escapeAttr(q.id)}" data-value="${v}" onclick="setRating('${escapeJs(q.id)}',${v})" ${disabled}>${v}</button>`).join('')}
       </div>
@@ -331,6 +442,7 @@ function collectRatings(){
 
 async function loadBaseline(){
   if(!configReady) return;
+  if(previewMode){showBaselineMessage('Preview mode: connect the backend URL to load a saved Baseline.','info');return;}
   const engagementId = document.getElementById('engagement-id-input').value.trim();
   if(!engagementId){showBaselineMessage('Please enter the Engagement ID.','error');return;}
   const button = document.getElementById('load-baseline-btn');
@@ -366,9 +478,14 @@ async function loadBaseline(){
     document.getElementById('engagement-name').value = data.engagement.engagement_name || '';
     document.getElementById('respondent-name').value = data.engagement.respondent_name || '';
     document.getElementById('email').value = data.engagement.email || '';
+    document.getElementById('project-type').value = data.engagement.project_type || '';
+    document.getElementById('designation').value = data.engagement.designation || '';
+    document.getElementById('participant-name-2').value = data.engagement.participant_name_2 || '';
+    document.getElementById('participant-role').value = data.engagement.participant_role || '';
     document.getElementById('response-date').value = todayISO();
     document.getElementById('organisation').readOnly = true;
     document.getElementById('engagement-name').readOnly = true;
+    document.getElementById('project-type').disabled = Boolean(data.engagement.project_type);
 
     renderRatings();
     renderMetricSelection();
@@ -396,7 +513,7 @@ function goToMetrics(){
   if(!configReady){alert('The ROI system is not connected yet.');return;}
   if(surveyType==='endline' && !loadedBaseline){alert('Please load the Baseline record first.');return;}
   const details = collectDetails();
-  if(!details.organisation || !details.engagement_name || !details.respondent_name || !details.date){
+  if(!details.organisation || !details.engagement_name || !details.respondent_name || !details.date || !details.project_type || !details.designation){
     alert('Please complete the required engagement details.');return;
   }
   const ratings = collectRatings();
@@ -416,20 +533,21 @@ function renderMetricSelection(){
 
   if(surveyType==='endline'){
     document.getElementById('metrics-title').innerHTML='Review all available <em>metrics</em>';
-    document.getElementById('metrics-subtitle').textContent='Keep the metrics selected earlier and add any new ones that are now relevant.';
+    document.getElementById('metrics-subtitle').textContent='Your earlier metrics are selected. Add any new ones.';
   }else{
     document.getElementById('metrics-title').innerHTML='Choose what to <em>measure</em>';
-    document.getElementById('metrics-subtitle').textContent='Select the metrics that are relevant for this engagement.';
+    document.getElementById('metrics-subtitle').textContent='Select the metrics relevant to this project.';
   }
 
   Object.entries(groups).forEach(([area,items])=>{
     const meta=AREA_META[area]||AREA_META['Financial ROI'];
     html += `<div class="roi-heading"><span class="area-icon area-${meta.key}">${meta.icon}</span>${escapeHtml(area)}</div><div class="metric-grid">`;
     items.forEach(m=>{
+      const infoHtml=infoIconHtml({text:m.info,example:m.infoExample});
       if(surveyType==='baseline'){
         const selected=selectedMetricIds.has(m.id);
-        html += `<button type="button" class="metric-option ${selected?'selected':''}" onclick="toggleBaselineMetric('${escapeJs(m.id)}')">
-          <span class="check">${selected?'✓':''}</span><span><span class="metric-label">${escapeHtml(m.label)}</span></span></button>`;
+        html += `<div class="metric-option ${selected?'selected':''}" role="checkbox" aria-checked="${selected}" tabindex="0" onclick="toggleBaselineMetric('${escapeJs(m.id)}')" onkeydown="metricOptionKey(event,this)">
+          <span class="check">${selected?'✓':''}</span><span><span class="metric-label">${escapeHtml(m.label)}${infoHtml}</span></span></div>`;
         return;
       }
 
@@ -445,10 +563,10 @@ function renderMetricSelection(){
       else if(newlyAdded){statusClass='status-added';statusText='✓ Added for this Endline';}
       else if(m.endlineOnly){statusClass='status-endline';}
 
-      html += `<button type="button" class="metric-option ${selected?'selected':''} ${locked?'locked':''}" onclick="toggleEndlineMetric('${escapeJs(m.id)}')" ${locked?'aria-disabled="true"':''}>
+      html += `<div class="metric-option ${selected?'selected':''} ${locked?'locked':''}" role="checkbox" aria-checked="${selected}" tabindex="0" onclick="toggleEndlineMetric('${escapeJs(m.id)}')" onkeydown="metricOptionKey(event,this)" ${locked?'aria-disabled="true"':''}>
         <span class="check">${selected?'✓':''}</span>
-        <span><span class="metric-label">${escapeHtml(m.label)}</span><span class="metric-status ${statusClass}">${escapeHtml(statusText)}</span></span>
-      </button>`;
+        <span><span class="metric-label">${escapeHtml(m.label)}${infoHtml}</span><span class="metric-status ${statusClass}">${escapeHtml(statusText)}</span></span>
+      </div>`;
     });
     html += `</div>${otherMetricInlineHtml(area)}`;
   });
@@ -461,20 +579,27 @@ function renderMetricSelection(){
 function otherMetricInlineHtml(area){
   const record=loadedBaseline?.other_metrics?.find(item=>item.area===area)||{};
   const slug=slugify(area);
-  const title = 'Other changes or metrics not covered above';
+  const isOpen=otherOpenAreas.has(area);
+  const attrs=`class="other-details" data-area="${escapeAttr(area)}" ${isOpen?'open':''} ontoggle="setOtherOpen(this.dataset.area,this.open)"`;
+
   if(surveyType==='baseline'){
     const value = otherMetricsByArea[area] || record.baseline_names || '';
-    return `<div class="other-box inline-other"><h4>${escapeHtml(title)}</h4>
-      <div class="help" style="margin-bottom:9px">Share anything important at the start that is not covered above. Goalkeep will review this and decide how best to include it in the ROI analysis.</div>
-      <textarea class="compact-notes" id="other-${slug}" data-area="${escapeAttr(area)}" oninput="setOtherMetrics(this.dataset.area,this.value)" placeholder="Optional: add anything important that is not listed above.">${escapeHtml(value)}</textarea></div>`;
+    return `<div class="other-box inline-other"><details ${attrs}>
+      <summary>Other metrics (optional)${value.trim()?' <span class="other-count">· added</span>':''}</summary>
+      <div class="other-body">
+        <div class="help" style="margin-bottom:8px">Add metric names, separated by commas.</div>
+        <textarea class="compact-notes" id="other-${slug}" data-area="${escapeAttr(area)}" oninput="setOtherMetrics(this.dataset.area,this.value)" placeholder="e.g. Volunteer hours, Partner reports">${escapeHtml(value)}</textarea>
+      </div></details></div>`;
   }
   const value = otherMetricsByArea[area] || record.endline_names || '';
-  return `<div class="other-box inline-other"><h4>${escapeHtml(title)}</h4>
-    <div class="help" style="margin-bottom:9px">Share any additional change, benefit, or metric that is not covered above. Goalkeep will review this and decide how best to include it in the ROI analysis.</div>
-    <div class="other-ref"><strong>Shared at Baseline for Goalkeep to consider:</strong><br>${escapeHtml(record.baseline_names||'None')}<br><span class="help">Goalkeep will review this and consider how best to include it in the ROI analysis.</span></div>
-    <label for="other-${slug}">Add anything new at Endline</label>
-    <textarea class="compact-notes" id="other-${slug}" data-area="${escapeAttr(area)}" oninput="setOtherMetrics(this.dataset.area,this.value)" placeholder="Optional: add anything new that is not listed above.">${escapeHtml(value)}</textarea>
-  </div>`;
+  const earlier = String(record.baseline_names||'').trim();
+  return `<div class="other-box inline-other"><details ${attrs}>
+    <summary>Other metrics (optional)${(value.trim()||earlier)?' <span class="other-count">· added</span>':''}</summary>
+    <div class="other-body">
+      ${earlier?`<div class="other-ref"><strong>Added at Baseline:</strong> ${escapeHtml(earlier)}</div>`:''}
+      <div class="help" style="margin-bottom:8px">Add metric names, separated by commas.</div>
+      <textarea class="compact-notes" id="other-${slug}" data-area="${escapeAttr(area)}" oninput="setOtherMetrics(this.dataset.area,this.value)" placeholder="e.g. Volunteer hours, Partner reports">${escapeHtml(value)}</textarea>
+    </div></details></div>`;
 }
 
 function setOtherMetrics(area,value){
@@ -552,12 +677,11 @@ function renderMetricForms(){
 function metricCardHtml(metric){
   if(!metric) return '';
   const meta=AREA_META[metric.area]||AREA_META['Financial ROI'];
-  const guidance=`<div class="metric-guidance single"><div class="guidance-box"><strong>Example</strong>${escapeHtml(metric.example||'Use the best available value for this metric.')}</div></div>`;
+  const nameHtml=`${escapeHtml(metric.label)}${infoIconHtml({text:metric.info,example:metric.infoExample})}`;
 
   if(surveyType==='baseline'){
     return `<div class="metric-card" data-metric-card="${escapeAttr(metric.id)}">
-      <div class="metric-head"><div class="metric-name">${escapeHtml(metric.label)}</div><span class="area-pill area-${meta.key}">${escapeHtml(metric.area)}</span></div>
-      ${guidance}
+      <div class="metric-head"><div class="metric-name">${nameHtml}</div><span class="area-pill area-${meta.key}">${escapeHtml(metric.area)}</span></div>
       ${applicabilityHtml(metric,'Applicable')}
       <div id="applicable-content-${escapeAttr(metric.id)}">
         ${expectedDirectionHtml(metric,'')}
@@ -586,8 +710,8 @@ function metricCardHtml(metric){
     : '';
 
   return `<div class="metric-card" data-metric-card="${escapeAttr(metric.id)}">
-    <div class="metric-head"><div class="metric-name">${escapeHtml(metric.label)}</div><span class="area-pill area-${meta.key}">${escapeHtml(metric.area)}</span></div>
-    ${guidance}${sourceNotice}
+    <div class="metric-head"><div class="metric-name">${nameHtml}</div><span class="area-pill area-${meta.key}">${escapeHtml(metric.area)}</span></div>
+    ${sourceNotice}
     ${applicabilityHtml(metric,currentStatus)}
     <div id="applicable-content-${escapeAttr(metric.id)}">
       ${expectedDirectionHtml(metric, existing.expected_improvement_direction || baseline?.expected_improvement_direction || '')}
@@ -657,9 +781,7 @@ function retrospectiveBaselineHtml(metric,existing){
           <div class="field"><label>Unit</label>${unitControlHtml(metric,`retro-unit-${metric.id}`,retroUnit,false)}</div>
         </div>
       </div>
-      <div class="section"><div class="section-title">Comments / Notes</div><textarea class="compact-notes" id="retro-comments-${escapeAttr(metric.id)}">${escapeHtml(existing.baseline_comments_notes||'')}</textarea></div>
     </div>
-    <div class="section"><div class="section-title">Why are you adding this metric now? <span class="required">*</span></div><textarea class="compact-notes" id="reason-added-${escapeAttr(metric.id)}">${escapeHtml(existing.reason_added_at_endline||'')}</textarea></div>
   </div>`;
 }
 
@@ -670,18 +792,21 @@ function currentValueFieldsHtml(metric,existing,source){
   const unit=existing.endline_unit||baseline?.baseline_unit||defaultUnit(metric);
 
   if(metric.type==='qualitative'){
-    return `<div class="section"><div class="question">Describe the current situation.</div><textarea id="value-${escapeAttr(metric.id)}">${escapeHtml(value)}</textarea><input type="hidden" id="unit-${escapeAttr(metric.id)}" value="Qualitative"></div>`;
+    return `<div class="section"><div class="section-title">Comments / Notes <span class="required">*</span>${commentsInfoHtml()}</div><textarea id="value-${escapeAttr(metric.id)}">${escapeHtml(value)}</textarea><input type="hidden" id="unit-${escapeAttr(metric.id)}" value="Qualitative"></div>`;
   }
 
   if(source==='Selected at Baseline' && baseline){
-    const baselineDisplay = baseline.metric_response_status==='Not applicable'
+    const notApplicable = baseline.metric_response_status==='Not applicable';
+    const baselineDisplay = notApplicable
       ? 'Not applicable'
       : `${escapeHtml(String(baseline.baseline_value??'—'))} ${escapeHtml(String(baseline.baseline_unit||''))}`;
     const comments = baseline.baseline_comments_notes ? `<div class="help">Earlier note: ${escapeHtml(baseline.baseline_comments_notes)}</div>` : '';
     const unitNote = lockedUnit ? '<div class="help">Unit kept same as the earlier response so the comparison stays clear.</div>' : '';
+    const editLink = notApplicable ? '' : `<button type="button" class="link-btn" id="baseline-edit-toggle-${escapeAttr(metric.id)}" onclick="toggleBaselineEdit('${escapeJs(metric.id)}')">Edit</button>`;
+    const editBox = notApplicable ? '' : `<div class="hidden" id="baseline-edit-wrap-${escapeAttr(metric.id)}">${valueInputHtml(metric,`baseline-edit-${metric.id}`,baseline.baseline_value??'')}<div class="help edit-note">Saving will correct the Baseline value. The original value is kept in the edit log.</div></div>`;
     return `<div class="section"><div class="question">What is the current value?</div>
       <div class="compare-grid">
-        <div class="field"><label>Earlier value</label><div class="readonly-unit">${baselineDisplay}</div>${comments}</div>
+        <div class="field"><label>Earlier value${editLink}</label><div class="readonly-unit" id="baseline-display-${escapeAttr(metric.id)}">${baselineDisplay}</div>${editBox}${comments}</div>
         <div class="field"><label>Current value</label>${valueInputHtml(metric,`value-${metric.id}`,value)}</div>
         <div class="field"><label>Unit</label>${unitControlHtml(metric,`unit-${metric.id}`,unit,Boolean(lockedUnit))}${unitNote}</div>
       </div>
@@ -724,13 +849,13 @@ function endlineFieldsHtml(metric,existing){
     : metric.askMonetisation ? `<div class="section"><div class="section-title">Can this change be converted into monetary value?</div><div class="inline-choices" id="monetise-${escapeAttr(metric.id)}" data-value="${escapeAttr(existingMonetisable)}">${['Yes','No','Not sure'].map(v=>`<button type="button" class="choice-btn ${existingMonetisable===v?'active':''}" onclick="setMonetisable('${escapeJs(metric.id)}','${v}')">${v}</button>`).join('')}</div><div class="conditional ${existingMonetisable==='Yes'?'show':''}" id="money-details-${escapeAttr(metric.id)}"><div class="compact-grid two" style="margin-top:10px"><div class="field"><label>₹ value per unit</label><div class="currency-wrap"><span>₹</span><input id="value-per-unit-${escapeAttr(metric.id)}" type="number" step="any" value="${escapeAttr(existing.value_per_unit??'')}"></div></div><div class="field"><label>How was this ₹ value estimated?</label><input id="value-basis-${escapeAttr(metric.id)}" value="${escapeAttr(existing.value_basis||'')}" placeholder="e.g. 2 staff hours × ₹250 per hour"></div></div></div></div>` : '';
 
   const selectedBucket=existing.attribution_bucket||'';
-  return `<div class="section"><div class="section-title">What changed?</div><textarea class="compact-notes" id="what-changed-${escapeAttr(metric.id)}">${escapeHtml(existing.what_changed||'')}</textarea></div>
-    <div class="section"><div class="section-title">Comments / Notes</div><textarea class="compact-notes" id="endline-comments-${escapeAttr(metric.id)}" placeholder="Optional: add any context, assumption, or explanation.">${escapeHtml(existing.comments_notes||existing.evidence||'')}</textarea></div>
-    ${monetary}
+  // Qualitative metrics already collect their text in the Comments / Notes box above.
+  const commentsBox = metric.type==='qualitative' ? '' :
+    `<div class="section"><div class="section-title">Comments / Notes <span class="required">*</span>${commentsInfoHtml()}</div><textarea class="compact-notes" id="endline-comments-${escapeAttr(metric.id)}">${escapeHtml(existing.comments_notes||'')}</textarea></div>`;
+  return `${monetary}
     <div class="section"><div class="section-title">How much of this change is linked to Goalkeep? <span class="required">*</span></div><div class="attr-grid" id="attr-${escapeAttr(metric.id)}" data-value="${escapeAttr(selectedBucket)}">${Object.keys(attributionBuckets).map(bucket=>{const parts=bucket.split(' — ');return `<button type="button" class="attr-btn ${selectedBucket===bucket?'selected':''}" data-bucket="${escapeAttr(bucket)}" onclick="setAttribution('${escapeJs(metric.id)}',this)"><div class="attr-range">${escapeHtml(parts[1]||bucket)}</div><div class="attr-name">${escapeHtml(parts[0])}</div></button>`}).join('')}</div></div>
-    <div class="section"><div class="section-title">Why this attribution level?</div><textarea class="compact-notes" id="attr-reason-${escapeAttr(metric.id)}">${escapeHtml(existing.attribution_reason||'')}</textarea></div>
-    <div class="section"><div class="section-title">Can this example be used externally? <span class="required">*</span></div><select id="external-use-${escapeAttr(metric.id)}"><option value="">Select</option>${['Yes, with organisation name','Yes, anonymously','Internal use only','No'].map(v=>`<option value="${escapeAttr(v)}" ${existing.external_use_permission===v?'selected':''}>${escapeHtml(v)}</option>`).join('')}</select></div>
-    <details ${existing.quote_or_example?'open':''}><summary>+ Add a quote, story, meeting, report, or decision example</summary><textarea class="compact-notes" id="quote-${escapeAttr(metric.id)}">${escapeHtml(existing.quote_or_example||'')}</textarea></details>`;
+    ${commentsBox}
+    <div class="section"><div class="section-title">Can this example be used externally? <span class="required">*</span></div><select id="external-use-${escapeAttr(metric.id)}"><option value="">Select</option>${['Yes, with organisation name','Yes, anonymously','Internal use only','No'].map(v=>`<option value="${escapeAttr(v)}" ${existing.external_use_permission===v?'selected':''}>${escapeHtml(v)}</option>`).join('')}</select></div>`;
 }
 
 function toggleApplicability(metricId){
@@ -794,23 +919,30 @@ function collectMetricAnswers(){
       answer.baseline_capture_type=document.getElementById(`baseline-capture-${id}`)?.value||'';
       answer.retrospective_baseline_value=document.getElementById(`retro-value-${id}`)?.value.trim()||'';
       answer.retrospective_baseline_unit=document.getElementById(`retro-unit-${id}`)?.value||'';
-      answer.starting_value_comments=document.getElementById(`retro-comments-${id}`)?.value.trim()||'';
-      answer.reason_added_at_endline=document.getElementById(`reason-added-${id}`)?.value.trim()||'';
     }else if(selectionSource==='Endline-only metric'){
       answer.baseline_capture_type='Endline-only metric';
     }else{
       answer.baseline_capture_type='Original Baseline';
     }
 
-    answer.what_changed=document.getElementById(`what-changed-${id}`)?.value.trim()||'';
-    answer.comments_notes=document.getElementById(`endline-comments-${id}`)?.value.trim()||'';
+    if(selectionSource==='Selected at Baseline'){
+      const editWrap=document.getElementById(`baseline-edit-wrap-${id}`);
+      if(editWrap && !editWrap.classList.contains('hidden')){
+        const corrected=document.getElementById(`baseline-edit-${id}`)?.value.trim()||'';
+        const original=loadedBaseline?.metrics?.find(m=>m.metric_id===id)?.baseline_value;
+        if(corrected!=='' && Number(corrected)!==Number(original)) answer.baseline_value_correction=corrected;
+      }
+    }
+
+    // One mandatory Comments / Notes field. For the qualitative metric the description box is the comment.
+    answer.comments_notes=metric.type==='qualitative'
+      ? answer.value
+      : (document.getElementById(`endline-comments-${id}`)?.value.trim()||'');
     answer.monetisable=metric.type==='currency'?'Direct financial value':(document.getElementById(`monetise-${id}`)?.dataset.value||'');
     answer.value_per_unit=document.getElementById(`value-per-unit-${id}`)?.value.trim()||'';
     answer.value_basis=document.getElementById(`value-basis-${id}`)?.value.trim()||'';
     answer.attribution_bucket=document.getElementById(`attr-${id}`)?.dataset.value||'';
-    answer.attribution_reason=document.getElementById(`attr-reason-${id}`)?.value.trim()||'';
     answer.external_use_permission=document.getElementById(`external-use-${id}`)?.value||'';
-    answer.quote_or_example=document.getElementById(`quote-${id}`)?.value.trim()||'';
     return answer;
   });
 }
@@ -831,9 +963,10 @@ function validateMetricAnswers(answers){
     if(answer.metric_selection_source==='Added at Endline'){
       if(!answer.baseline_capture_type) return `Please select how the starting value was estimated for ${metric.label}.`;
       if(answer.baseline_capture_type!=='Baseline unavailable' && answer.retrospective_baseline_value==='') return `Please enter the starting value for ${metric.label}.`;
-      if(!answer.reason_added_at_endline) return `Please explain why ${metric.label} is being added at Endline.`;
     }
+    if(answer.baseline_value_correction!==undefined && !Number.isFinite(Number(answer.baseline_value_correction))) return `Please enter a valid corrected Baseline value for ${metric.label}.`;
     if(!answer.attribution_bucket) return `Please select a Goalkeep attribution bucket for ${metric.label}.`;
+    if(!answer.comments_notes) return `Please add Comments / Notes for ${metric.label}.`;
     if(!answer.external_use_permission) return `Please select the external-use permission for ${metric.label}.`;
     if(metric.askMonetisation && answer.monetisable==='Yes' && !answer.value_per_unit) return `Please enter the ₹ value per unit for ${metric.label}.`;
   }
@@ -851,6 +984,7 @@ async function submitResponse(){
     return;
   }
   hideSubmitError();
+  if(previewMode){showSubmitError('Preview mode: the backend URL is not set, so this response was not saved. Paste the Apps Script /exec URL into SHEET_URL to test saving.');return;}
 
   const clientSubmissionId=`webv2_${Date.now()}_${Math.random().toString(36).slice(2,10)}`;
   const payload={
@@ -863,6 +997,10 @@ async function submitResponse(){
     respondent_name:details.respondent_name,
     email:details.email,
     date:details.date,
+    project_type:details.project_type,
+    designation:details.designation,
+    participant_name_2:details.participant_name_2,
+    participant_role:details.participant_role,
     rating_answers:ratings,
     metric_answers:metricAnswers,
     other_metrics:collectOtherMetrics()
@@ -901,14 +1039,14 @@ async function waitForSubmission(clientSubmissionId){
 
 function showSubmitError(message){const el=document.getElementById('submit-error');el.textContent=message;el.classList.add('show');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
 function hideSubmitError(){const el=document.getElementById('submit-error');el.textContent='';el.classList.remove('show')}
-function collectDetails(){return{organisation:document.getElementById('organisation').value.trim(),engagement_name:document.getElementById('engagement-name').value.trim(),respondent_name:document.getElementById('respondent-name').value.trim(),email:document.getElementById('email').value.trim(),date:document.getElementById('response-date').value}}
+function collectDetails(){return{organisation:document.getElementById('organisation').value.trim(),engagement_name:document.getElementById('engagement-name').value.trim(),respondent_name:document.getElementById('respondent-name').value.trim(),email:document.getElementById('email').value.trim(),date:document.getElementById('response-date').value,project_type:document.getElementById('project-type').value,designation:document.getElementById('designation').value.trim(),participant_name_2:document.getElementById('participant-name-2').value.trim(),participant_role:document.getElementById('participant-role').value.trim()}}
 function metricById(id){return metrics.find(m=>m.id===id)}
 function defaultUnit(metric){return metric?.units?.[0]||''}
 function groupBy(items,key){return items.reduce((acc,item)=>{(acc[item[key]] ||= []).push(item);return acc},{})}
 function todayISO(){const d=new Date();const local=new Date(d.getTime()-d.getTimezoneOffset()*60000);return local.toISOString().slice(0,10)}
 function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms))}
-function clearDetails(){['organisation','engagement-name','respondent-name','email'].forEach(id=>document.getElementById(id).value='');document.getElementById('response-date').value=todayISO()}
-function unlockDetails(){document.getElementById('organisation').readOnly=false;document.getElementById('engagement-name').readOnly=false}
+function clearDetails(){['organisation','engagement-name','respondent-name','email','designation','participant-name-2','participant-role'].forEach(id=>document.getElementById(id).value='');document.getElementById('project-type').value='';document.getElementById('response-date').value=todayISO()}
+function unlockDetails(){document.getElementById('organisation').readOnly=false;document.getElementById('engagement-name').readOnly=false;document.getElementById('project-type').disabled=false}
 
 
 function showValidationMessage(message){
@@ -936,7 +1074,7 @@ function validateCurrentPage(page){
   clearValidationHighlights();
 
   if(page===1){
-    const requiredFields=['organisation','response-date','engagement-name','respondent-name'];
+    const requiredFields=['organisation','response-date','engagement-name','project-type','respondent-name','designation'];
     const missing=requiredFields.filter(id=>!document.getElementById(id)?.value.trim());
     missing.forEach(markMissingField);
 
@@ -977,8 +1115,10 @@ function saveCurrentPageState(page){
   }
 
   if(page===3){
+    // Keep what was typed even for metrics that get unticked later, so re-ticking restores it.
+    collectMetricAnswers().forEach(answer=>{restoredMetricAnswersById[answer.metric_id]=answer;});
     pageState.screen3={
-      metricAnswers:collectMetricAnswers()
+      metricAnswers:Object.values(restoredMetricAnswersById)
     };
   }
 }
@@ -1003,9 +1143,9 @@ function restoreCurrentPageState(page){
   }
 
   if(page===3 && pageState.screen3.metricAnswers){
-    restoredMetricAnswersById=Object.fromEntries(
-      pageState.screen3.metricAnswers.map(answer=>[answer.metric_id,answer])
-    );
+    pageState.screen3.metricAnswers.forEach(answer=>{
+      if(!restoredMetricAnswersById[answer.metric_id]) restoredMetricAnswersById[answer.metric_id]=answer;
+    });
     renderMetricForms();
   }
 }
@@ -1029,7 +1169,7 @@ function resetApp(){
   isSubmittingFinal=false;
   draftReady=true;
   surveyType='baseline';selectedMetricIds=new Set();baselineSelectedMetricIds=new Set();addedAtEndlineMetricIds=new Set();existingEndlineMetricIds=new Set();ratingState={};loadedBaseline=null;existingEndlineByMetric={};restoredMetricAnswersById={};
-  pageState={screen1:{},screen2:{},screen3:{}};
+  pageState={screen1:{},screen2:{},screen3:{}};otherOpenAreas=new Set();
   clearDetails();unlockDetails();document.getElementById('engagement-id-input').value='';document.getElementById('baseline-load-message').innerHTML='';document.getElementById('engagement-output').innerHTML='';hideSubmitError();
   document.getElementById('baseline-type').classList.add('active');document.getElementById('endline-type').classList.remove('active');document.getElementById('endline-load-card').style.display='none';document.getElementById('type-note').textContent="Baseline captures where things are today, before the engagement creates change.";
   if(configReady){renderRatings();renderMetricSelection();renderOtherMetrics();}
@@ -1146,6 +1286,10 @@ function applyDraftDetails(details){
   document.getElementById('engagement-name').value=details.engagement_name||'';
   document.getElementById('respondent-name').value=details.respondent_name||'';
   document.getElementById('email').value=details.email||'';
+  document.getElementById('project-type').value=details.project_type||'';
+  document.getElementById('designation').value=details.designation||'';
+  document.getElementById('participant-name-2').value=details.participant_name_2||'';
+  document.getElementById('participant-role').value=details.participant_role||'';
   document.getElementById('response-date').value=details.date||todayISO();
 }
 
@@ -1205,6 +1349,7 @@ function applyOtherMetricsDraft(items){
 
 function applyRestoredMetricAnswers(){
   Object.entries(restoredMetricAnswersById||{}).forEach(([id,answer])=>{
+    if(!selectedMetricIds.has(id)) return;
     setIfExists(`status-${id}`,answer.metric_response_status||'Applicable');
     toggleApplicability(id);
     setIfExists(`value-${id}`,answer.value||'');
@@ -1215,11 +1360,12 @@ function applyRestoredMetricAnswers(){
     setIfExists(`baseline-capture-${id}`,answer.baseline_capture_type||'');
     setIfExists(`retro-value-${id}`,answer.retrospective_baseline_value||'');
     setIfExists(`retro-unit-${id}`,answer.retrospective_baseline_unit||'');
-    setIfExists(`retro-comments-${id}`,answer.starting_value_comments||answer.retrospective_baseline_comments||'');
-    setIfExists(`reason-added-${id}`,answer.reason_added_at_endline||'');
     toggleRetroBaseline(id);
-    setIfExists(`what-changed-${id}`,answer.what_changed||'');
     setIfExists(`endline-comments-${id}`,answer.comments_notes||'');
+    if(answer.baseline_value_correction!==undefined && document.getElementById(`baseline-edit-wrap-${id}`)){
+      toggleBaselineEdit(id,true);
+      setIfExists(`baseline-edit-${id}`,answer.baseline_value_correction);
+    }
     if(answer.monetisable) setMonetisable(id,answer.monetisable);
     setIfExists(`value-per-unit-${id}`,answer.value_per_unit||'');
     setIfExists(`value-basis-${id}`,answer.value_basis||'');
@@ -1236,9 +1382,7 @@ function applyRestoredMetricAnswers(){
         setAttribution(id, btn);
       }
     }
-    setIfExists(`attr-reason-${id}`,answer.attribution_reason||'');
     setIfExists(`external-use-${id}`,answer.external_use_permission||'');
-    setIfExists(`quote-${id}`,answer.quote_or_example||'');
   });
 }
 
@@ -1251,6 +1395,81 @@ function updateDraftStatus(message,type){
   const container=document.getElementById('draft-alert');
   if(!container) return;
   container.innerHTML=`<div class="notice ${type||''}" id="draft-status">${escapeHtml(message)}</div>`;
+}
+
+/* ---------------- v3 helpers: info icons, collapsible sections, baseline edit ---------------- */
+function infoIconHtml(opts){
+  opts=opts||{};
+  if(!opts.text && !opts.example && !(opts.items&&opts.items.length)) return '';
+  const list=(opts.items&&opts.items.length)?`<ul class="info-list">${opts.items.map(i=>`<li>${escapeHtml(i)}</li>`).join('')}</ul>`:'';
+  return `<span class="info-wrap"><span class="info-btn" role="button" tabindex="0" aria-label="More information">i</span><span class="info-tip" role="tooltip">${opts.text?escapeHtml(opts.text):''}${opts.example?`<span class="info-ex">Example: ${escapeHtml(opts.example)}</span>`:''}${list}</span></span>`;
+}
+
+function commentsInfoHtml(){
+  return infoIconHtml({text:'For the ratings above it helps to add:',items:COMMENTS_INFO_ITEMS});
+}
+
+function positionInfoTip(wrap){
+  const tip=wrap.querySelector('.info-tip');
+  if(!tip) return;
+  tip.style.left='0px';
+  const hadDisplay=tip.style.display;
+  tip.style.display='block';tip.style.visibility='hidden';
+  const rect=tip.getBoundingClientRect();
+  tip.style.display=hadDisplay;tip.style.visibility='';
+  const margin=12;
+  const viewW=document.documentElement.clientWidth;
+  let shift=0;
+  if(rect.right>viewW-margin) shift=viewW-margin-rect.right;
+  if(rect.left+shift<margin) shift=margin-rect.left;
+  tip.style.left=shift+'px';
+}
+
+document.addEventListener('mouseover',event=>{
+  const wrap=event.target.closest&&event.target.closest('.info-wrap');
+  if(wrap) positionInfoTip(wrap);
+});
+document.addEventListener('focusin',event=>{
+  const wrap=event.target.closest&&event.target.closest('.info-wrap');
+  if(wrap) positionInfoTip(wrap);
+});
+// Tap support on touch screens; on mouse devices the tip only shows while hovering.
+document.addEventListener('click',event=>{
+  const btn=event.target.closest&&event.target.closest('.info-btn');
+  const touchOnly=window.matchMedia&&window.matchMedia('(hover: none)').matches;
+  document.querySelectorAll('.info-wrap.open').forEach(w=>{if(!btn||w!==btn.parentElement) w.classList.remove('open')});
+  if(btn){
+    event.stopPropagation();event.preventDefault();
+    if(touchOnly){const w=btn.parentElement;w.classList.toggle('open');positionInfoTip(w);}
+  }
+},true);
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape') document.querySelectorAll('.info-wrap.open').forEach(w=>w.classList.remove('open'));
+});
+
+function metricOptionKey(event,el){
+  if(event.target.closest&&event.target.closest('.info-wrap')) return;
+  if(event.key==='Enter'||event.key===' '){event.preventDefault();el.click();}
+}
+
+function setOtherOpen(area,isOpen){
+  if(isOpen) otherOpenAreas.add(area); else otherOpenAreas.delete(area);
+}
+
+function toggleBaselineEdit(metricId,forceOpen){
+  const wrap=document.getElementById(`baseline-edit-wrap-${metricId}`);
+  const display=document.getElementById(`baseline-display-${metricId}`);
+  const toggle=document.getElementById(`baseline-edit-toggle-${metricId}`);
+  if(!wrap) return;
+  const open=forceOpen===true ? true : wrap.classList.contains('hidden');
+  wrap.classList.toggle('hidden',!open);
+  if(display) display.classList.toggle('hidden',open);
+  if(toggle) toggle.textContent=open?'Cancel':'Edit';
+  if(!open){
+    const original=loadedBaseline?.metrics?.find(m=>m.metric_id===metricId)?.baseline_value;
+    const input=document.getElementById(`baseline-edit-${metricId}`);
+    if(input) input.value=original??'';
+  }
 }
 
 function jsonp(baseUrl,params={}){
