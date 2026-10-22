@@ -44,30 +44,6 @@ textarea{min-height:64px;resize:vertical}.compact-notes{min-height:56px}.help{fo
 .roi-heading{display:flex;align-items:center;gap:11px;font-size:15px;font-weight:700;margin:22px 0 10px}.roi-heading:first-child{margin-top:0}.area-icon{width:34px;height:34px;border-radius:9px;display:grid;place-items:center}
 .metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric-option{border:1.5px solid var(--line);background:#fff;border-radius:13px;padding:15px;display:flex;gap:11px;align-items:flex-start;cursor:pointer;text-align:left;color:var(--ink);min-height:72px}.metric-option:hover{border-color:var(--line-dark)}.metric-option.selected{border-color:var(--ink);background:var(--soft)}.metric-option.locked{cursor:default}.metric-option.locked:hover{border-color:var(--ink)}
 .check{width:21px;height:21px;border-radius:6px;border:1.5px solid var(--line-dark);display:grid;place-items:center;flex-shrink:0;margin-top:1px}.metric-option.selected .check{background:var(--ink);border-color:var(--ink);color:#fff}.metric-label{font-size:14px;font-weight:600;line-height:1.35;display:block}.metric-status{display:inline-block;margin-top:7px;padding:3px 8px;border-radius:12px;font-size:10px;font-weight:700}.status-baseline{background:var(--green-bg);color:var(--green)}.status-added{background:var(--blue-bg);color:var(--blue)}.status-available{background:var(--soft);color:var(--muted)}.status-endline{background:var(--purple-bg);color:var(--purple)}
-.form-chooser-card{border:2px solid var(--ink);padding:20px}
-.notice.attention{background:var(--amber-bg);border-color:#f0d29c;color:var(--amber);font-weight:600}
-.form-choice-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.form-choice{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;border:2px solid var(--line-dark);background:#fff;border-radius:14px;padding:18px;cursor:pointer;color:var(--ink)}
-.form-choice:hover{border-color:var(--ink)}
-.form-choice-title{font-size:18px;font-weight:700}
-.form-choice-sub{font-size:13px;color:var(--muted)}
-.form-choice-tag{margin-top:10px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;background:var(--soft);color:var(--muted)}
-.form-choice-tag::after{content:'Select this form'}
-.form-choice.active{border-color:var(--blue);background:var(--blue-bg);box-shadow:0 0 0 3px rgba(30,99,170,.15)}
-#form-funder.active{border-color:var(--purple);background:var(--purple-bg);box-shadow:0 0 0 3px rgba(85,69,184,.15)}
-.form-choice.active .form-choice-tag{background:var(--ink);color:#fff}
-.form-choice.active .form-choice-tag::after{content:'Selected ✓'}
-.form-badge{display:inline-block;font-size:12px;font-weight:700;padding:6px 12px;border-radius:20px}
-.form-badge-project{background:var(--blue-bg);color:var(--blue)}
-.form-badge-funder{background:var(--purple-bg);color:var(--purple)}
-.info-btn{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;border:1.5px solid var(--line-dark);font-size:11px;font-weight:700;color:var(--muted);margin-left:6px;vertical-align:middle;cursor:pointer;line-height:1;background:#fff}.info-btn:hover{border-color:var(--ink);color:var(--ink)}.metric-def{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:6px;line-height:1.4}
-.attr-slider{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
-.attr-slider-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
-.attr-readout{font-family:"DM Serif Display",serif;font-size:28px;line-height:1}
-.attr-readout.unset{font-size:16px;color:var(--muted);font-family:"DM Sans",sans-serif;font-weight:600}
-.attr-bucket-name{font-size:12px;font-weight:700;color:var(--blue);text-align:right}
-.attr-slider input[type=range]{width:100%;accent-color:var(--blue);margin:6px 0 2px}
-.attr-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--faint)}
 .selection-summary{margin-top:14px;font-size:13px;color:var(--muted)}
 .other-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.other-box{border:1px solid var(--line);border-radius:12px;padding:14px}.other-box h4{font-size:13px;margin-bottom:6px}.inline-other{margin:10px 0 18px;background:var(--soft)}.other-ref{font-size:12px;color:var(--muted);background:var(--soft);padding:8px 10px;border-radius:8px;margin-bottom:9px;min-height:38px}
 .metric-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:14px}.metric-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}.metric-name{font-family:"DM Serif Display",serif;font-size:24px;line-height:1.15}.area-pill{white-space:nowrap;font-size:11px;font-weight:700;padding:4px 9px;border-radius:20px}
@@ -83,7 +59,7 @@ textarea{min-height:64px;resize:vertical}.compact-notes{min-height:56px}.help{fo
 .submit-error{display:none}.submit-error.show{display:block}.done{text-align:center;padding:60px 24px}.done-icon{width:68px;height:68px;background:var(--green-bg);border-radius:50%;display:grid;place-items:center;margin:0 auto 18px;font-size:30px;color:var(--green)}.done h2{font-family:"DM Serif Display",serif;font-size:34px;margin-bottom:8px}.done p{color:var(--muted);font-size:14px}.engagement-box{max-width:650px;margin:18px auto;background:#151512;color:#fff;border-radius:14px;padding:17px}.engagement-box small{display:block;color:rgba(255,255,255,.7);margin-bottom:5px}.engagement-id{font-family:monospace;font-size:17px;word-break:break-all}
 footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-top:1px solid var(--line)}footer a{color:var(--muted);text-decoration:none}
 .area-financial{background:var(--blue-bg);color:var(--blue)}.area-efficiency{background:var(--green-bg);color:var(--green)}.area-decision{background:var(--amber-bg);color:var(--amber)}.area-capacity{background:var(--purple-bg);color:var(--purple)}
-@media(max-width:760px){header{padding:0 18px}.logo{height:30px;width:auto}.progress{justify-content:flex-start;overflow-x:auto}.p-label{display:none}.p-line{width:32px}.grid-2,.metric-grid,.other-grid,.compact-grid,.compact-grid.two,.compare-grid,.metric-guidance{grid-template-columns:1fr}.type-row{grid-template-columns:1fr}.attr-grid{grid-template-columns:repeat(2,1fr)}main{padding:15px 15px 55px}.hero{padding-top:28px}.metric-head{display:block}.area-pill{display:inline-block;margin-top:8px}.metric-card{padding:17px}.rating-card{padding:17px}.form-choice-row{grid-template-columns:1fr}}
+@media(max-width:760px){header{padding:0 18px}.logo{height:30px;width:auto}.progress{justify-content:flex-start;overflow-x:auto}.p-label{display:none}.p-line{width:32px}.grid-2,.metric-grid,.other-grid,.compact-grid,.compact-grid.two,.compare-grid,.metric-guidance{grid-template-columns:1fr}.type-row{grid-template-columns:1fr}.attr-grid{grid-template-columns:repeat(2,1fr)}main{padding:15px 15px 55px}.hero{padding-top:28px}.metric-head{display:block}.area-pill{display:inline-block;margin-top:8px}.metric-card{padding:17px}.rating-card{padding:17px}}
 </style>
 </head>
 <body>
@@ -103,7 +79,6 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
   <div class="p-step"><div class="p-circle" id="pc4">4</div><span class="p-label" id="pl4">Done</span></div>
 </div>
 
-<div id="form-badge" style="text-align:center;padding:12px 20px 0"></div>
 <section class="screen active" id="screen1">
   <div class="hero">
     <div class="eyebrow">Step 1 of 3</div>
@@ -114,24 +89,6 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
     <div id="setup-alert"></div>
     <div id="draft-alert"></div>
 
-    <div class="card form-chooser-card">
-      <div class="card-title">Step 1: Which form are you filling?</div>
-      <div class="notice attention" id="form-required">Choose one form first. The questions and the saving location come from the form you pick.</div>
-      <div class="form-choice-row">
-        <button type="button" class="form-choice" id="form-project" onclick="setFormType('project')">
-          <span class="form-choice-title">Projects / CBEs</span>
-          <span class="form-choice-sub">For Goalkeep project and community-based engagement (CBE) responses.</span>
-          <span class="form-choice-tag"></span>
-        </button>
-        <button type="button" class="form-choice" id="form-funder" onclick="setFormType('funder')">
-          <span class="form-choice-title">Impact Funder</span>
-          <span class="form-choice-sub">For impact funder responses.</span>
-          <span class="form-choice-tag"></span>
-        </button>
-      </div>
-    </div>
-
-    <div id="form-body" class="hidden">
     <div class="card">
       <div class="card-title">What are you filling?</div>
       <div class="type-row">
@@ -177,10 +134,6 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
           <label for="email">Email address</label>
           <input id="email" type="email" autocomplete="email">
         </div>
-        <div class="field">
-          <label for="respondent-role">Your role in this engagement</label>
-          <input id="respondent-role" autocomplete="organization-title" placeholder="e.g. MEL Manager, Programme Lead">
-        </div>
       </div>
     </div>
 
@@ -190,7 +143,6 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
 
     <div class="actions">
       <button type="button" class="btn primary" onclick="goToMetrics()">Next: choose metrics →</button>
-    </div>
     </div>
   </main>
 </section>
@@ -252,13 +204,7 @@ footer{text-align:center;color:var(--faint);font-size:12px;padding:24px;border-t
 
 <script>
 // Replace this with the V2 Apps Script Web App /exec URL.
-// Projects / CBEs backend (Web App /exec URL). Test deployment only; never paste the live URL here.
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyG30dJ9kYx2mzsI8_FgN-2LjnlVNejw5-By5s5tWTGN8KKpHjKkQYcFD-3CxmpTrsPwg/exec';
-// Impact Funder backend: a separate Apps Script project and sheet.
-const SHEET_URL_IMPACT_FUNDER = 'PASTE_YOUR_APPS_SCRIPT_IMPACT_FUNDER_URL_HERE';
-const FORM_LABELS = { project: 'Projects / CBEs', funder: 'Impact Funder' };
-function sheetUrl(){ return formType === 'funder' ? SHEET_URL_IMPACT_FUNDER : SHEET_URL; }
-const PROJECT_CONFIG_URL = SHEET_URL;
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzLYs5uTGUPSUSfBmAbaYiV4OJ7L-HJwFszQAj6ZMONAqDFXgHM6QZS_vbOGmZo7Llm/exec';
 
 const AREA_META = {
   'Financial ROI': {key:'financial', icon:'₹'},
@@ -267,27 +213,11 @@ const AREA_META = {
   'Capacity Building & Data Culture ROI': {key:'capacity', icon:'●'}
 };
 
-// DRAFT metric definitions (tasklist item 2.0). Gayatri to confirm wording before go-live.
-const METRIC_DEFINITIONS = {
-  M01: "Total money raised for the programme or organisation in the period, in rupees.",
-  M02: "Change in the total programme budget compared with the starting point.",
-  M03: "How many ad hoc requests for data, reports or analysis the MEL or data team receives in a set period.",
-  M04: "Staff time spent preparing a report or the regular reporting cycle.",
-  M05: "How many separate trackers or spreadsheets are used to manage programme data.",
-  M06: "How many people can view or work with the data or dashboards without asking another team.",
-  M07: "Share of the programme team who refer to data before planning or review decisions.",
-  M09: "Share of the planned outcome or service-delivery target reached so far.",
-  M11: "Number of staff who have been trained to read, interpret or use data.",
-  M12: "Whether teams keep using the worksheets, templates or learning materials after the engagement.",
-  M13: "Number of times the organisation has adapted or repeated a Goalkeep method or tool on its own.",
-  M14: "How many team members actively use the dashboard in a typical week or month."
-};
-
 let ratingQuestions = [];
 let metrics = [];
 let roiAreas = [];
+let attributionBuckets = {};
 let surveyType = 'baseline';
-let formType = '';
 let selectedMetricIds = new Set();
 let baselineSelectedMetricIds = new Set();
 let addedAtEndlineMetricIds = new Set();
@@ -309,103 +239,32 @@ window.addEventListener('DOMContentLoaded', init);
 
 async function init(){
   document.getElementById('response-date').value = todayISO();
-  const params = new URLSearchParams(window.location.search);
-  // Links created before the chooser existed (no type) were all Projects / CBEs.
-  const urlType = params.get('type') || (params.get('draft') ? 'project' : '');
-  if(urlType === 'project' || urlType === 'funder'){
-    await setFormType(urlType, {fromUrl:true});
-  }else{
-    updateFormChoiceUI();
-    renderFormBadge();
-    document.getElementById('ratings-wrapper').innerHTML = '<div class="card"><div class="subtle">Choose a form above to load its questions.</div></div>';
-  }
-}
-
-async function setFormType(type, options = {}){
-  const fromUrl = Boolean(options.fromUrl);
-  if(type !== 'project' && type !== 'funder') return;
-  if(!fromUrl && type === formType) return;
-  if(!fromUrl && formType && hasEnteredData() && !confirm('Switching forms clears what you have entered on this page. Continue?')) return;
-
-  formType = type;
-  draftReady = false;
-  clearTimeout(draftSaveTimer);
-  configReady = false;
-  resetFormState();
-  updateFormChoiceUI();
-  renderFormBadge();
-  document.getElementById('form-body').classList.remove('hidden');
-  document.getElementById('setup-alert').innerHTML = '';
-
-  // Impact Funder not connected yet: show its questions as a read-only preview, using the
-  // Projects / CBEs questions. Saving, drafts, submit and Baseline lookup stay off until its URL is set.
-  const previewOnly = !isBackendConfigured();
-  const configUrl = previewOnly ? PROJECT_CONFIG_URL : sheetUrl();
-  if(!isUrlReady(configUrl)){
-    document.getElementById('setup-alert').innerHTML = `<div class="notice error">Setup needed: the ${escapeHtml(FORM_LABELS[formType])} backend URL is not connected yet.</div>`;
-    document.getElementById('ratings-wrapper').innerHTML = '<div class="card"><div class="subtle">This form will load after its backend URL is added.</div></div>';
+  if(!isBackendConfigured()){
+    document.getElementById('setup-alert').innerHTML = '<div class="notice error">Setup needed: paste the V2 Apps Script Web App URL into SHEET_URL in index.html.</div>';
+    document.getElementById('ratings-wrapper').innerHTML = '<div class="card"><div class="subtle">The form will load after the backend URL is added.</div></div>';
     return;
   }
-  if(previewOnly){
-    document.getElementById('setup-alert').innerHTML = `<div class="notice error"><strong>${escapeHtml(FORM_LABELS[formType])} is not connected yet.</strong> The questions below are a preview from the Projects / CBEs form. Saving is turned off until its sheet is set up.</div>`;
-  }
-
-  document.getElementById('ratings-wrapper').innerHTML = '<div class="card"><div class="subtle">Loading questions…</div></div>';
   try{
-    const config = await jsonp(configUrl, {action:'getConfig'});
+    const config = await jsonp(SHEET_URL,{action:'getConfig'});
     if(config.status !== 'success') throw new Error(config.message || 'Could not load form configuration.');
     ratingQuestions = config.rating_questions || [];
     metrics = config.metrics || [];
     roiAreas = config.roi_areas || Object.keys(AREA_META);
+    attributionBuckets = config.attribution_buckets || {};
     configReady = true;
     renderRatings();
     renderMetricSelection();
     renderOtherMetrics();
-    await initDraftAutosave(fromUrl);
+    await initDraftAutosave();
   }catch(error){
     document.getElementById('setup-alert').innerHTML = `<div class="notice error">${escapeHtml(error.message)}</div>`;
     document.getElementById('ratings-wrapper').innerHTML = '<div class="card"><div class="subtle">The rating questions could not be loaded.</div></div>';
   }
 }
 
-function updateFormChoiceUI(){
-  ['project','funder'].forEach(t => document.getElementById(`form-${t}`)?.classList.toggle('active', formType === t));
-  document.getElementById('form-required')?.classList.toggle('hidden', Boolean(formType));
+function isBackendConfigured(){
+  return SHEET_URL && !SHEET_URL.includes('PASTE_YOUR_APPS_SCRIPT');
 }
-
-function renderFormBadge(){
-  const el = document.getElementById('form-badge');
-  if(!el) return;
-  el.innerHTML = formType ? `<span class="form-badge form-badge-${formType}">Filling: ${escapeHtml(FORM_LABELS[formType])}</span>` : '';
-}
-
-function hasEnteredData(){
-  const details = collectDetails();
-  return Boolean(details.organisation || details.engagement_name || details.respondent_name || details.respondent_role
-    || loadedBaseline || selectedMetricIds.size || Object.values(ratingState).some(r => r && r.rating));
-}
-
-function resetFormState(){
-  selectedMetricIds = new Set();
-  baselineSelectedMetricIds = new Set();
-  addedAtEndlineMetricIds = new Set();
-  existingEndlineMetricIds = new Set();
-  ratingState = {};
-  loadedBaseline = null;
-  existingEndlineByMetric = {};
-  restoredMetricAnswersById = {};
-  otherMetricsByArea = {};
-  pageState = {screen1:{}, screen2:{}, screen3:{}};
-  clearDetails();
-  unlockDetails();
-  document.getElementById('engagement-id-input').value = '';
-  document.getElementById('baseline-load-message').innerHTML = '';
-  document.getElementById('engagement-output').innerHTML = '';
-  hideSubmitError();
-}
-
-function isUrlReady(url){ return Boolean(url) && !String(url).includes('PASTE_YOUR_APPS_SCRIPT'); }
-function isBackendConfigured(){ return isUrlReady(sheetUrl()); }
 
 function setSurveyType(type){
   surveyType = type;
@@ -472,14 +331,13 @@ function collectRatings(){
 
 async function loadBaseline(){
   if(!configReady) return;
-  if(!isBackendConfigured()){showBaselineMessage(`${FORM_LABELS[formType]} is not connected yet, so a Baseline cannot be loaded.`,'error');return;}
   const engagementId = document.getElementById('engagement-id-input').value.trim();
   if(!engagementId){showBaselineMessage('Please enter the Engagement ID.','error');return;}
   const button = document.getElementById('load-baseline-btn');
   button.disabled=true;button.textContent='Loading…';
   showBaselineMessage('Looking up the Baseline record…','');
   try{
-    const data = await jsonp(sheetUrl(),{action:'getBaseline',engagement_id:engagementId});
+    const data = await jsonp(SHEET_URL,{action:'getBaseline',engagement_id:engagementId});
     if(data.status!=='success') throw new Error(data.message || 'Could not load Baseline.');
 
     loadedBaseline = data;
@@ -535,8 +393,7 @@ function showBaselineMessage(message,type){
 function goToMetrics(){
   if(!validateCurrentPage(1)) return;
   saveCurrentPageState(1);
-  if(!formType){alert('Please choose a form first: Projects / CBEs or Impact Funder.');return;}
-  if(!configReady){alert('The form could not be loaded. Check the backend URL for this form.');return;}
+  if(!configReady){alert('The ROI system is not connected yet.');return;}
   if(surveyType==='endline' && !loadedBaseline){alert('Please load the Baseline record first.');return;}
   const details = collectDetails();
   if(!details.organisation || !details.engagement_name || !details.respondent_name || !details.date){
@@ -572,7 +429,7 @@ function renderMetricSelection(){
       if(surveyType==='baseline'){
         const selected=selectedMetricIds.has(m.id);
         html += `<button type="button" class="metric-option ${selected?'selected':''}" onclick="toggleBaselineMetric('${escapeJs(m.id)}')">
-          <span class="check">${selected?'✓':''}</span><span><span class="metric-label">${escapeHtml(m.label)}${metricInfoHtml(m).icon}</span>${metricInfoHtml(m).def}</span></button>`;
+          <span class="check">${selected?'✓':''}</span><span><span class="metric-label">${escapeHtml(m.label)}</span></span></button>`;
         return;
       }
 
@@ -590,7 +447,7 @@ function renderMetricSelection(){
 
       html += `<button type="button" class="metric-option ${selected?'selected':''} ${locked?'locked':''}" onclick="toggleEndlineMetric('${escapeJs(m.id)}')" ${locked?'aria-disabled="true"':''}>
         <span class="check">${selected?'✓':''}</span>
-        <span><span class="metric-label">${escapeHtml(m.label)}${metricInfoHtml(m).icon}</span>${metricInfoHtml(m).def}<span class="metric-status ${statusClass}">${escapeHtml(statusText)}</span></span>
+        <span><span class="metric-label">${escapeHtml(m.label)}</span><span class="metric-status ${statusClass}">${escapeHtml(statusText)}</span></span>
       </button>`;
     });
     html += `</div>${otherMetricInlineHtml(area)}`;
@@ -600,21 +457,6 @@ function renderMetricSelection(){
   updateSelectionSummary();
 }
 
-
-function metricInfoHtml(metric){
-  const text=METRIC_DEFINITIONS[metric.id];
-  if(!text) return {icon:'',def:''};
-  return {
-    icon:`<span class="info-btn" title="${escapeAttr(text)}" onclick="toggleMetricDefinition(event,'${escapeJs(metric.id)}')">i</span>`,
-    def:`<span class="metric-def hidden" id="def-${escapeAttr(metric.id)}">${escapeHtml(text)}</span>`
-  };
-}
-
-function toggleMetricDefinition(event,id){
-  event.preventDefault();
-  event.stopPropagation();
-  document.getElementById(`def-${id}`)?.classList.toggle('hidden');
-}
 
 function otherMetricInlineHtml(area){
   const record=loadedBaseline?.other_metrics?.find(item=>item.area===area)||{};
@@ -785,6 +627,14 @@ function baselineValueFieldsHtml(metric){
     </div></div>`;
 }
 
+function baselineReferenceHtml(metric,baseline){
+  if(!baseline) return '<div class="baseline-ref"><strong>Original Baseline</strong>No saved value found.</div>';
+  if(baseline.metric_response_status==='Not applicable'){
+    return `<div class="baseline-ref"><strong>Original Baseline</strong>Not applicable${baseline.baseline_comments_notes?`<br>${escapeHtml(baseline.baseline_comments_notes)}`:''}</div>`;
+  }
+  return `<div class="baseline-ref"><strong>Original Baseline</strong><b>${escapeHtml(String(baseline.baseline_value??'—'))} ${escapeHtml(String(baseline.baseline_unit||''))}</b>${baseline.baseline_assumption_type?` · ${escapeHtml(baseline.baseline_assumption_type)}`:''}${baseline.baseline_comments_notes?`<br>${escapeHtml(baseline.baseline_comments_notes)}`:''}</div>`;
+}
+
 function retrospectiveBaselineHtml(metric,existing){
   const capture=existing.baseline_capture_type||'';
   const retroValue=existing.baseline_value??'';
@@ -873,14 +723,14 @@ function endlineFieldsHtml(metric,existing){
     ? `<div class="notice">This metric is already a monetary value, so no conversion is required.</div>`
     : metric.askMonetisation ? `<div class="section"><div class="section-title">Can this change be converted into monetary value?</div><div class="inline-choices" id="monetise-${escapeAttr(metric.id)}" data-value="${escapeAttr(existingMonetisable)}">${['Yes','No','Not sure'].map(v=>`<button type="button" class="choice-btn ${existingMonetisable===v?'active':''}" onclick="setMonetisable('${escapeJs(metric.id)}','${v}')">${v}</button>`).join('')}</div><div class="conditional ${existingMonetisable==='Yes'?'show':''}" id="money-details-${escapeAttr(metric.id)}"><div class="compact-grid two" style="margin-top:10px"><div class="field"><label>₹ value per unit</label><div class="currency-wrap"><span>₹</span><input id="value-per-unit-${escapeAttr(metric.id)}" type="number" step="any" value="${escapeAttr(existing.value_per_unit??'')}"></div></div><div class="field"><label>How was this ₹ value estimated?</label><input id="value-basis-${escapeAttr(metric.id)}" value="${escapeAttr(existing.value_basis||'')}" placeholder="e.g. 2 staff hours × ₹250 per hour"></div></div></div></div>` : '';
 
-  const selectedPct=existing.attribution_percent??legacyPercentFromBucket(existing.attribution_bucket);
-  // Notes merges the old What changed, Comments, Attribution reason and Quote boxes (tasklist 6.0).
-  // Older saved values are shown here so nothing already entered is lost.
-  const notesText=[existing.what_changed,existing.comments_notes||existing.evidence,existing.attribution_reason,existing.quote_or_example].filter(Boolean).join('\n\n');
-  return `<div class="section"><div class="section-title">What changed, and why?</div><textarea class="compact-notes" id="endline-comments-${escapeAttr(metric.id)}" placeholder="Describe what changed and why you think Goalkeep contributed. Add any quote, story or example that supports it. Optional.">${escapeHtml(notesText)}</textarea></div>
+  const selectedBucket=existing.attribution_bucket||'';
+  return `<div class="section"><div class="section-title">What changed?</div><textarea class="compact-notes" id="what-changed-${escapeAttr(metric.id)}">${escapeHtml(existing.what_changed||'')}</textarea></div>
+    <div class="section"><div class="section-title">Comments / Notes</div><textarea class="compact-notes" id="endline-comments-${escapeAttr(metric.id)}" placeholder="Optional: add any context, assumption, or explanation.">${escapeHtml(existing.comments_notes||existing.evidence||'')}</textarea></div>
     ${monetary}
-    <div class="section"><div class="section-title">How much of this change is linked to Goalkeep? <span class="required">*</span></div>${attributionControlHtml(metric.id,selectedPct)}</div>
-    <div class="section"><div class="section-title">Can this example be used externally? <span class="required">*</span></div><select id="external-use-${escapeAttr(metric.id)}"><option value="">Select</option>${['Yes, with organisation name','Yes, anonymously','Internal use only','No'].map(v=>`<option value="${escapeAttr(v)}" ${existing.external_use_permission===v?'selected':''}>${escapeHtml(v)}</option>`).join('')}</select></div>`;
+    <div class="section"><div class="section-title">How much of this change is linked to Goalkeep? <span class="required">*</span></div><div class="attr-grid" id="attr-${escapeAttr(metric.id)}" data-value="${escapeAttr(selectedBucket)}">${Object.keys(attributionBuckets).map(bucket=>{const parts=bucket.split(' — ');return `<button type="button" class="attr-btn ${selectedBucket===bucket?'selected':''}" data-bucket="${escapeAttr(bucket)}" onclick="setAttribution('${escapeJs(metric.id)}',this)"><div class="attr-range">${escapeHtml(parts[1]||bucket)}</div><div class="attr-name">${escapeHtml(parts[0])}</div></button>`}).join('')}</div></div>
+    <div class="section"><div class="section-title">Why this attribution level?</div><textarea class="compact-notes" id="attr-reason-${escapeAttr(metric.id)}">${escapeHtml(existing.attribution_reason||'')}</textarea></div>
+    <div class="section"><div class="section-title">Can this example be used externally? <span class="required">*</span></div><select id="external-use-${escapeAttr(metric.id)}"><option value="">Select</option>${['Yes, with organisation name','Yes, anonymously','Internal use only','No'].map(v=>`<option value="${escapeAttr(v)}" ${existing.external_use_permission===v?'selected':''}>${escapeHtml(v)}</option>`).join('')}</select></div>
+    <details ${existing.quote_or_example?'open':''}><summary>+ Add a quote, story, meeting, report, or decision example</summary><textarea class="compact-notes" id="quote-${escapeAttr(metric.id)}">${escapeHtml(existing.quote_or_example||'')}</textarea></details>`;
 }
 
 function toggleApplicability(metricId){
@@ -909,43 +759,10 @@ function setMonetisable(metricId,value){
   }
 }
 
-// Attribution is an exact 0-100% value set with a slider (tasklist 10.0).
-// The four bands below match the Goalkeep buckets and are shown as guidance only.
-function attributionBandLabel(pct){
-  if(pct<25) return 'Low contribution — 0% to 24%';
-  if(pct<50) return 'Medium contribution — 25% to 49%';
-  if(pct<75) return 'High contribution — 50% to 74%';
-  return 'Very high contribution — 75% to 100%';
-}
-function legacyPercentFromBucket(bucket){
-  // Old bucket answers (saved drafts, earlier baseline values) are converted to the band midpoint.
-  // Whole-number midpoints (slider steps are whole numbers). Very high 87.5 is shown as 88.
-  const map={'Low':12,'Medium':37,'High':62,'Very high':88};
-  const key=Object.keys(map).find(k=>String(bucket||'').startsWith(k));
-  return key ? map[key] : '';
-}
-function attributionControlHtml(metricId,pct){
-  const has=pct!==''&&pct!==null&&pct!==undefined&&!Number.isNaN(Number(pct));
-  const v=has?Number(pct):0;
-  const id=escapeAttr(metricId);
-  return `<div class="attr-slider" id="attr-${id}" data-value="${has?v:''}">
-    <div class="attr-slider-top"><span class="attr-readout ${has?'':'unset'}" id="attr-readout-${id}">${has?v+'%':'Move the slider'}</span><span class="attr-bucket-name" id="attr-band-${id}">${has?escapeHtml(attributionBandLabel(v)):''}</span></div>
-    <input type="range" min="0" max="100" step="1" value="${v}" id="attr-range-${id}" aria-label="Share of change linked to Goalkeep" oninput="setAttributionPct('${escapeJs(metricId)}',this.value)">
-    <div class="attr-scale"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
-    <div class="help">Drag to the share of this change that is linked to Goalkeep. Bands: 0–24% low, 25–49% medium, 50–74% high, 75–100% very high.</div>
-  </div>`;
-}
-function setAttributionPct(metricId,value){
-  const v=Math.round(Number(value));
-  const box=document.getElementById(`attr-${metricId}`);
-  if(!box) return;
-  box.dataset.value=v;
-  const readout=document.getElementById(`attr-readout-${metricId}`);
-  readout.textContent=`${v}%`;
-  readout.classList.remove('unset');
-  document.getElementById(`attr-band-${metricId}`).textContent=attributionBandLabel(v);
-  const range=document.getElementById(`attr-range-${metricId}`);
-  if(range && String(range.value)!==String(v)) range.value=v;
+function setAttribution(metricId,button){
+  document.querySelectorAll(`#attr-${cssEscape(metricId)} .attr-btn`).forEach(btn=>btn.classList.remove('selected'));
+  button.classList.add('selected');
+  document.getElementById(`attr-${metricId}`).dataset.value=button.dataset.bucket;
 }
 
 function collectMetricAnswers(){
@@ -985,17 +802,15 @@ function collectMetricAnswers(){
       answer.baseline_capture_type='Original Baseline';
     }
 
-    answer.what_changed='';
+    answer.what_changed=document.getElementById(`what-changed-${id}`)?.value.trim()||'';
     answer.comments_notes=document.getElementById(`endline-comments-${id}`)?.value.trim()||'';
     answer.monetisable=metric.type==='currency'?'Direct financial value':(document.getElementById(`monetise-${id}`)?.dataset.value||'');
     answer.value_per_unit=document.getElementById(`value-per-unit-${id}`)?.value.trim()||'';
     answer.value_basis=document.getElementById(`value-basis-${id}`)?.value.trim()||'';
-    const pctRaw=document.getElementById(`attr-${id}`)?.dataset.value;
-    answer.attribution_percent=(pctRaw===undefined||pctRaw==='')?'':Number(pctRaw);
-    answer.attribution_bucket=answer.attribution_percent===''?'':attributionBandLabel(answer.attribution_percent);
-    answer.attribution_reason='';
+    answer.attribution_bucket=document.getElementById(`attr-${id}`)?.dataset.value||'';
+    answer.attribution_reason=document.getElementById(`attr-reason-${id}`)?.value.trim()||'';
     answer.external_use_permission=document.getElementById(`external-use-${id}`)?.value||'';
-    answer.quote_or_example='';
+    answer.quote_or_example=document.getElementById(`quote-${id}`)?.value.trim()||'';
     return answer;
   });
 }
@@ -1018,7 +833,7 @@ function validateMetricAnswers(answers){
       if(answer.baseline_capture_type!=='Baseline unavailable' && answer.retrospective_baseline_value==='') return `Please enter the starting value for ${metric.label}.`;
       if(!answer.reason_added_at_endline) return `Please explain why ${metric.label} is being added at Endline.`;
     }
-    if(answer.attribution_percent===''||answer.attribution_percent===undefined) return `Please set the share linked to Goalkeep (0–100%) for ${metric.label}.`;
+    if(!answer.attribution_bucket) return `Please select a Goalkeep attribution bucket for ${metric.label}.`;
     if(!answer.external_use_permission) return `Please select the external-use permission for ${metric.label}.`;
     if(metric.askMonetisation && answer.monetisable==='Yes' && !answer.value_per_unit) return `Please enter the ₹ value per unit for ${metric.label}.`;
   }
@@ -1026,7 +841,6 @@ function validateMetricAnswers(answers){
 }
 
 async function submitResponse(){
-  if(!isBackendConfigured()){showSubmitError(`${FORM_LABELS[formType]} is not connected yet. Responses cannot be saved until its sheet is set up.`);return;}
   const details=collectDetails();
   const ratings=collectRatings();
   const metricAnswers=collectMetricAnswers();
@@ -1042,14 +856,12 @@ async function submitResponse(){
   const payload={
     client_submission_id:clientSubmissionId,
     draft_id:draftId,
-    form_type:formType,
     survey_type:surveyType,
     engagement_id:surveyType==='endline'?loadedBaseline.engagement_id:'',
     organisation:details.organisation,
     engagement_name:details.engagement_name,
     respondent_name:details.respondent_name,
     email:details.email,
-    respondent_role:details.respondent_role,
     date:details.date,
     rating_answers:ratings,
     metric_answers:metricAnswers,
@@ -1061,7 +873,7 @@ async function submitResponse(){
   isSubmittingFinal=true;
   updateDraftStatus('Current response is being submitted. Please do not close this page.','');
   try{
-    await fetch(sheetUrl(),{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+    await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
     const result=await waitForSubmission(clientSubmissionId);
     if(result.status!=='success') throw new Error(result.message||'The response could not be saved.');
     document.getElementById('done-message').textContent=`${surveyType==='baseline'?'Baseline':'Endline'} response saved for ${details.organisation}.`;
@@ -1081,7 +893,7 @@ async function submitResponse(){
 async function waitForSubmission(clientSubmissionId){
   for(let attempt=0;attempt<24;attempt++){
     await sleep(1000);
-    const result=await jsonp(sheetUrl(),{action:'getSubmissionStatus',client_submission_id:clientSubmissionId});
+    const result=await jsonp(SHEET_URL,{action:'getSubmissionStatus',client_submission_id:clientSubmissionId});
     if(result.status==='success'||result.status==='error') return result;
   }
   throw new Error('The system did not confirm the save in time. Please check the response workbook before resubmitting.');
@@ -1089,25 +901,24 @@ async function waitForSubmission(clientSubmissionId){
 
 function showSubmitError(message){const el=document.getElementById('submit-error');el.textContent=message;el.classList.add('show');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
 function hideSubmitError(){const el=document.getElementById('submit-error');el.textContent='';el.classList.remove('show')}
-function collectDetails(){return{organisation:document.getElementById('organisation').value.trim(),engagement_name:document.getElementById('engagement-name').value.trim(),respondent_name:document.getElementById('respondent-name').value.trim(),email:document.getElementById('email').value.trim(),respondent_role:(document.getElementById('respondent-role')?.value||'').trim(),date:document.getElementById('response-date').value}}
+function collectDetails(){return{organisation:document.getElementById('organisation').value.trim(),engagement_name:document.getElementById('engagement-name').value.trim(),respondent_name:document.getElementById('respondent-name').value.trim(),email:document.getElementById('email').value.trim(),date:document.getElementById('response-date').value}}
 function metricById(id){return metrics.find(m=>m.id===id)}
 function defaultUnit(metric){return metric?.units?.[0]||''}
 function groupBy(items,key){return items.reduce((acc,item)=>{(acc[item[key]] ||= []).push(item);return acc},{})}
 function todayISO(){const d=new Date();const local=new Date(d.getTime()-d.getTimezoneOffset()*60000);return local.toISOString().slice(0,10)}
 function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms))}
-function clearDetails(){['organisation','engagement-name','respondent-name','email','respondent-role'].forEach(id=>document.getElementById(id).value='');document.getElementById('response-date').value=todayISO()}
+function clearDetails(){['organisation','engagement-name','respondent-name','email'].forEach(id=>document.getElementById(id).value='');document.getElementById('response-date').value=todayISO()}
 function unlockDetails(){document.getElementById('organisation').readOnly=false;document.getElementById('engagement-name').readOnly=false}
 
 
 function showValidationMessage(message){
-  const main=document.querySelector('.screen.active main');
-  if(!main){alert(message);return;}
-  main.querySelectorAll('.page-message').forEach(el=>el.remove());
-  const div=document.createElement('div');
-  div.className='notice error page-message';
-  div.textContent=message;
-  main.prepend(div);
-  window.scrollTo({top:0,behavior:'smooth'});
+  const container=document.getElementById('setup-alert') || document.getElementById('submit-error');
+  if(container){
+    container.innerHTML=`<div class="notice error">${escapeHtml(message)}</div>`;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }else{
+    alert(message);
+  }
 }
 
 function clearValidationHighlights(){
@@ -1142,7 +953,7 @@ function validateCurrentPage(page){
   }
 
   if(page===2 && !selectedMetricIds.size){
-    showValidationMessage('Select at least one metric to continue.');
+    showValidationMessage('Please complete all mandatory questions before continuing.');
     return false;
   }
 
@@ -1200,7 +1011,6 @@ function restoreCurrentPageState(page){
 }
 
 function showScreen(number){
-  document.querySelectorAll('.page-message').forEach(el=>el.remove());
   const currentScreen=Number(document.querySelector('.screen.active')?.id?.replace('screen',''));
   if(currentScreen && currentScreen!==number && currentScreen<=3){
     saveCurrentPageState(currentScreen);
@@ -1228,21 +1038,15 @@ function resetApp(){
 }
 
 
-async function initDraftAutosave(allowRestore = true){
+async function initDraftAutosave(){
   draftReady=false;
   attachDraftListeners();
-  if(!isBackendConfigured()){
-    startNewDraft();
-    draftReady=false;
-    updateDraftStatus(`${FORM_LABELS[formType]} is not connected yet, so entries on this page are not saved.`,'error');
-    return;
-  }
-  const existingDraftId=allowRestore?new URLSearchParams(window.location.search).get('draft'):'';
+  const existingDraftId=new URLSearchParams(window.location.search).get('draft');
   if(existingDraftId){
     draftId=existingDraftId;
     updateDraftStatus('Loading saved response progress…','');
     try{
-      const result=await jsonp(sheetUrl(),{action:'getDraft',draft_id:draftId});
+      const result=await jsonp(SHEET_URL,{action:'getDraft',draft_id:draftId});
       if(result.status==='success' && String(result.draft_status||'').toLowerCase()==='submitted'){
         showSubmittedDraftLocked();
         return;
@@ -1277,7 +1081,6 @@ function startNewDraft(){
   draftId=`draft_${Date.now()}_${Math.random().toString(36).slice(2,10)}`;
   const url=new URL(window.location.href);
   url.searchParams.set('draft',draftId);
-  if(formType) url.searchParams.set('type',formType);
   window.history.replaceState({},'',url.toString());
   updateDraftStatus('Current response will be saved on this link as you fill the form.','');
 }
@@ -1293,13 +1096,13 @@ function attachDraftListeners(){
 }
 
 function scheduleDraftSave(){
-  if(!draftReady || isRestoringDraft || isSubmittingFinal || !draftId || !configReady || !isBackendConfigured()) return;
+  if(!draftReady || isRestoringDraft || isSubmittingFinal || !draftId || !configReady) return;
   clearTimeout(draftSaveTimer);
   draftSaveTimer=setTimeout(saveDraftNow,1200);
 }
 
 async function saveDraftNow(){
-  if(!draftReady || isRestoringDraft || isSubmittingFinal || !draftId || !configReady || !isBackendConfigured()) return;
+  if(!draftReady || isRestoringDraft || isSubmittingFinal || !draftId || !configReady) return;
   const details=collectDetails();
   const payload={
     action:'saveDraft',
@@ -1314,7 +1117,7 @@ async function saveDraftNow(){
   };
   try{
     updateDraftStatus('Current response is saving…','');
-    await fetch(sheetUrl(),{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+    await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
     updateDraftStatus('Current response saved on this link.','success');
   }catch(error){
     updateDraftStatus('Current response could not be autosaved right now. Keep this tab open and try again when internet is stable.','error');
@@ -1324,8 +1127,7 @@ async function saveDraftNow(){
 function buildDraftPayload(){
   const active=document.querySelector('.screen.active')?.id||'screen1';
   return {
-    version:'v2.8-fixes',
-    form_type:formType,
+    version:'v2.4.1-index-only',
     screen:Number(active.replace('screen',''))||1,
     survey_type:surveyType,
     engagement_id_input:document.getElementById('engagement-id-input')?.value.trim()||'',
@@ -1344,7 +1146,6 @@ function applyDraftDetails(details){
   document.getElementById('engagement-name').value=details.engagement_name||'';
   document.getElementById('respondent-name').value=details.respondent_name||'';
   document.getElementById('email').value=details.email||'';
-  document.getElementById('respondent-role').value=details.respondent_role||'';
   document.getElementById('response-date').value=details.date||todayISO();
 }
 
@@ -1417,15 +1218,27 @@ function applyRestoredMetricAnswers(){
     setIfExists(`retro-comments-${id}`,answer.starting_value_comments||answer.retrospective_baseline_comments||'');
     setIfExists(`reason-added-${id}`,answer.reason_added_at_endline||'');
     toggleRetroBaseline(id);
-    setIfExists(`endline-comments-${id}`,[answer.what_changed,answer.comments_notes,answer.attribution_reason,answer.quote_or_example].filter(Boolean).join('\n\n'));
+    setIfExists(`what-changed-${id}`,answer.what_changed||'');
+    setIfExists(`endline-comments-${id}`,answer.comments_notes||'');
     if(answer.monetisable) setMonetisable(id,answer.monetisable);
     setIfExists(`value-per-unit-${id}`,answer.value_per_unit||'');
     setIfExists(`value-basis-${id}`,answer.value_basis||'');
-    const restoredPct=answer.attribution_percent!==undefined&&answer.attribution_percent!==''
-      ? answer.attribution_percent
-      : legacyPercentFromBucket(answer.attribution_bucket);
-    if(restoredPct!==''&&restoredPct!==undefined) setAttributionPct(id, restoredPct);
+    if(answer.attribution_bucket){
+      const buttons = Array.from(
+        document.querySelectorAll(`#attr-${cssEscape(id)} .attr-btn`)
+      );
+
+      const btn = buttons.find(
+        item => item.dataset.bucket === answer.attribution_bucket
+      );
+
+      if(btn){
+        setAttribution(id, btn);
+      }
+    }
+    setIfExists(`attr-reason-${id}`,answer.attribution_reason||'');
     setIfExists(`external-use-${id}`,answer.external_use_permission||'');
+    setIfExists(`quote-${id}`,answer.quote_or_example||'');
   });
 }
 
